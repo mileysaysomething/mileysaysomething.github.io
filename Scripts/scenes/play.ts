@@ -3,7 +3,7 @@ module scenes {
     // Private Instance Variables
     private _ocean: objects.Ocean;
     private _plane: objects.Plane;
-    private _island: objects.Island;
+   // private _island: objects.Island;
     private _clouds: objects.Cloud[];
     private _cloudNum: number;
 
@@ -27,7 +27,7 @@ module scenes {
     public Start(): void {
       this._ocean = new objects.Ocean(this.assetManager);
       this._plane = new objects.Plane(this.assetManager);
-      this._island = new objects.Island(this.assetManager);
+     // this._island = new objects.Island(this.assetManager);
 
       // instantiate the cloud array
       this._clouds = new Array<objects.Cloud>();
@@ -48,7 +48,7 @@ module scenes {
     public Update(): void {
       this._ocean.Update();
       this._plane.Update();
-      this._island.Update();
+      //this._island.Update();
 
       this._clouds.forEach(cloud => {
         cloud.Update();
@@ -61,7 +61,7 @@ module scenes {
       this.addChild(this._ocean);
 
       // add the island to the scene
-      this.addChild(this._island);
+      //this.addChild(this._island);
 
       // add the plane to the scene
       this.addChild(this._plane);
