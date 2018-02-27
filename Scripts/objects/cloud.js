@@ -33,8 +33,8 @@ var objects;
         };
         // reset the objects location to some value
         Cloud.prototype.Reset = function () {
-            this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);
-            this.y = -this.height;
+            this.x = Math.floor((Math.random() * (499 + this.width)) + this.halfWidth) + 600;
+            this.y = this.height;
             this._dx = Math.floor((Math.random() * 4) - 2);
             this._dy = Math.floor((Math.random() * 5) + 5);
         };
@@ -47,6 +47,9 @@ var objects;
         Cloud.prototype.CheckBounds = function () {
             // check lower bounds
             if (this.y >= 480 + this.height) {
+                this.Reset();
+            }
+            if (this.x >= 1000 + this.width) {
                 this.Reset();
             }
         };

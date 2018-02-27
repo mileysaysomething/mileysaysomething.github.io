@@ -93,10 +93,9 @@ var objects;
         // move the object to some new location
         //create a class that only moves bullets
         Plane.prototype.Move = function () {
+            // mouse controls
             //  this.x = objects.Game.stage.mouseX;      
             // this.y = objects.Game.stage.mouseY;
-            // mouse controls
-            // this.x = objects.Game.stage.mouseX;
             // keyboard controls
             if (objects.Game.keyboardManager.moveLeft) {
                 this.x -= 5;
