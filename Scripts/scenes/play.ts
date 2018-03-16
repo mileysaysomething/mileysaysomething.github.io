@@ -7,6 +7,8 @@ module scenes {
     private _clouds: objects.Cloud[];
     private _cloudNum: number;
 
+    private _muteBtn: objects.Button;
+   
     // Public Properties
     private _ninjaBGMSound: createjs.AbstractSoundInstance;
     
@@ -17,8 +19,12 @@ module scenes {
       this.Start();
     }
    
-    // Private Mathods
+    // Private Methods
+    private _muteBtnClick():void{
 
+      this._ninjaBGMSound.volume = 0.0;
+
+    }
 
 
     // Public Methods
@@ -28,6 +34,7 @@ module scenes {
       this._ocean = new objects.Ocean(this.assetManager);
       this._plane = new objects.Plane(this.assetManager);
      
+      this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 1300, 65);
 
       // instantiate the cloud array
       this._clouds = new Array<objects.Cloud>();
@@ -57,6 +64,7 @@ module scenes {
 
     // This is where the fun happens
     public Main(): void {
+
       // add the ocean to the scene
       this.addChild(this._ocean);
 
@@ -70,6 +78,11 @@ module scenes {
       this._clouds.forEach(cloud => {
         this.addChild(cloud);
       });
+
+      // add the muteBtn to the scene
+      this.addChild(this._muteBtn);
+      this._muteBtn.on("click", this._muteBtnClick);
+      
     }
   }
 }

@@ -18,12 +18,16 @@ var scenes;
             _this.Start();
             return _this;
         }
-        // Private Mathods
+        // Private Methods
+        PlayScene.prototype._muteBtnClick = function () {
+            this._ninjaBGMSound.volume = 0.0;
+        };
         // Public Methods
         // Initialize Game Variables and objects
         PlayScene.prototype.Start = function () {
             this._ocean = new objects.Ocean(this.assetManager);
             this._plane = new objects.Plane(this.assetManager);
+            this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 65);
             // instantiate the cloud array
             this._clouds = new Array();
             this._cloudNum = 3;
@@ -55,6 +59,9 @@ var scenes;
             this._clouds.forEach(function (cloud) {
                 _this.addChild(cloud);
             });
+            // add the muteBtn to the scene
+            this.addChild(this._muteBtn);
+            this._muteBtn.on("click", this._muteBtnClick);
         };
         return PlayScene;
     }(objects.Scene));

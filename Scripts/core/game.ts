@@ -22,7 +22,8 @@
     {id: "ocean", src:"./Assets/images/fujiNew.png"},
     {id: "plane", src:"./Assets/images/ninja.png"},
     {id: "cloud", src:"./Assets/images/cyborg.png"},
-    {id: "ninjaBGM", src:"./Assets/audio/NinjaSoundEffect.mp3"}
+    {id: "ninjaBGM", src:"./Assets/audio/lvl1BGM.mp3"},
+    {id: "muteBtn", src:"./Assets/images/soundBtn.png"}
   ];
 
   // preloads assets

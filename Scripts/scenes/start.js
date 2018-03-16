@@ -12,6 +12,8 @@ var scenes;
 (function (scenes) {
     var StartScene = /** @class */ (function (_super) {
         __extends(StartScene, _super);
+        // private _muteBtn: objects.Button;
+        //private _ninjaBGMSound: createjs.AbstractSoundInstance;
         // Public Properties
         // Constructor
         function StartScene(assetManager) {
@@ -23,11 +25,16 @@ var scenes;
         StartScene.prototype._startButtonClick = function () {
             objects.Game.currentScene = config.Scene.PLAY;
         };
+        /*//loop sound of ninja
+          this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
+                this._ninjaBGMSound.loop = -1; // play forever
+                this._ninjaBGMSound.volume = 0.1; */
         // Public Methods
         // Initialize Game Variables and objects
         StartScene.prototype.Start = function () {
             this._welcomeLabel = new objects.Label("Cyborg War", "60px", "bold", "#ffffff", 675, 240, true);
             this._startButton = new objects.Button(this.assetManager, "startButton", 675, 340);
+            // this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 657, 440);
             this.Main();
         };
         StartScene.prototype.Update = function () {
