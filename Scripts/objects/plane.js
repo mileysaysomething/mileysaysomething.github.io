@@ -64,8 +64,10 @@ var objects;
             this.updateEntityBulletPosition(something);
         };
         Plane.prototype.drawEntity = function (something) {
+            //let graphics = new Sprite('images/bullet.png');
             var graphics = new createjs.Graphics().beginFill("red").drawRect(something.x - something.width / 2, something.y - something.height / 2, something.width, something.height);
             shape = new createjs.Shape(graphics);
+            //shape = new createjs.Sprite('./Assets/images/cyborg.png');
             objects.Game.stage.addChild(shape);
         };
         // updates the game object every frame

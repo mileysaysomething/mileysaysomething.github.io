@@ -23,7 +23,7 @@ module objects {
       this.y = 200;
 
     }
-
+    
     public static Bullet(id, x, y, spdX, spdY, width, height) {
       var asd = {
         x: x,
@@ -68,10 +68,12 @@ module objects {
 
     public drawEntity(something) {
 
-
+      //let graphics = new Sprite('images/bullet.png');
 
       let graphics = new createjs.Graphics().beginFill("red").drawRect(something.x - something.width / 2, something.y - something.height / 2, something.width, something.height);
       shape = new createjs.Shape(graphics);
+      //shape = new createjs.Sprite('./Assets/images/cyborg.png');
+
       objects.Game.stage.addChild(shape);
     }
 
