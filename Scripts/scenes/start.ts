@@ -22,14 +22,6 @@ module scenes {
     }
 
     
-
-
-    /*//loop sound of ninja
-      this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
-            this._ninjaBGMSound.loop = -1; // play forever
-            this._ninjaBGMSound.volume = 0.1; */
-
-
     // Public Methods
 
     // Initialize Game Variables and objects

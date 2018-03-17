@@ -18,10 +18,6 @@ var scenes;
             _this.Start();
             return _this;
         }
-        // Private Methods
-        PlayScene.prototype._muteBtnClick = function () {
-            this._ninjaBGMSound.volume = 0.0;
-        };
         // Public Methods
         // Initialize Game Variables and objects
         PlayScene.prototype.Start = function () {
@@ -40,6 +36,12 @@ var scenes;
             this._ninjaBGMSound.loop = -1; // play forever
             this._ninjaBGMSound.volume = 0.1;
             this.Main();
+        };
+        // Private Methods
+        PlayScene.prototype._muteBtnClick = function () {
+            createjs.Sound.stop();
+            //this._ninjaBGMSound.volume = 0.0;
+            //this._ninjaBGMSound.stop();
         };
         PlayScene.prototype.Update = function () {
             this._ocean.Update();

@@ -25,10 +25,6 @@ var scenes;
         StartScene.prototype._startButtonClick = function () {
             objects.Game.currentScene = config.Scene.PLAY;
         };
-        /*//loop sound of ninja
-          this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
-                this._ninjaBGMSound.loop = -1; // play forever
-                this._ninjaBGMSound.volume = 0.1; */
         // Public Methods
         // Initialize Game Variables and objects
         StartScene.prototype.Start = function () {
