@@ -1,19 +1,18 @@
 module objects {
-  export class Cloud extends objects.GameObject {
+  console.log("Enemy loaded");
+
+  export class Cyborg extends objects.GameObject {
     // private instance variables
-
+    private pattern:number = 0;
     // public properties
-
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
-      super(assetManager, "cloud");
+      super(assetManager, "cyborg");
       this.Start();
     }
 
     // private methods
-
     // public methods
-
     // Initializes variables and creates new objects
     public Start():void {
       this.Reset();
@@ -27,17 +26,20 @@ module objects {
 
     // reset the objects location to some value
     public Reset():void {
-      this.x = Math.floor((Math.random() * (499+ this.width)) + this.halfWidth) + 600;
-      
-      this.y = this.height;
+      this.x = Math.floor((Math.random() * 100)) + 1300;
+       
+      this.y = Math.floor(Math.random() * Math.floor(this.height)) + 40;
       this._dx = Math.floor((Math.random() * 4) - 2);
+      
       this._dy = Math.floor((Math.random() * 5) + 5);
+    
     }
 
     // move the object to some new location
     public Move():void {
-      this.y += this._dy;
-      this.x += this._dx;
+      this.x -= this._dx + 8;
+      this.y += this._dy  - Math.floor(Math.random() * 10);
+    
     }
 
     // check to see if some boundary has been passed
@@ -47,7 +49,7 @@ module objects {
         this.Reset();
       }
 
-      if(this.x >= 1000 + this.width) {
+      if(this.x <= 0 + this.width) {
         this.Reset();
       }
 

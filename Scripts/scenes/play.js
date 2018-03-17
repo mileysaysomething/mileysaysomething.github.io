@@ -21,8 +21,8 @@ var scenes;
         // Public Methods
         // Initialize Game Variables and objects
         PlayScene.prototype.Start = function () {
-            this._ocean = new objects.Ocean(this.assetManager);
-            this._plane = new objects.Plane(this.assetManager);
+            this._ocean = new objects.Level1(this.assetManager);
+            this._plane = new objects.Ninja(this.assetManager);
             this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
             this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
             // instantiate the cloud array
@@ -30,7 +30,7 @@ var scenes;
             this._cloudNum = 3;
             // loop and add each cloud to the array
             for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new objects.Cloud(this.assetManager);
+                this._clouds[count] = new objects.Cyborg(this.assetManager);
             }
             //loop sound of ninja
             this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");

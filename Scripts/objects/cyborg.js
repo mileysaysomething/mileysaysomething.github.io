@@ -10,51 +10,53 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Cloud = /** @class */ (function (_super) {
-        __extends(Cloud, _super);
-        // private instance variables
+    console.log("Enemy loaded");
+    var Cyborg = /** @class */ (function (_super) {
+        __extends(Cyborg, _super);
         // public properties
         // Constructor
-        function Cloud(assetManager) {
-            var _this = _super.call(this, assetManager, "cloud") || this;
+        function Cyborg(assetManager) {
+            var _this = _super.call(this, assetManager, "cyborg") || this;
+            // private instance variables
+            _this.pattern = 0;
             _this.Start();
             return _this;
         }
         // private methods
         // public methods
         // Initializes variables and creates new objects
-        Cloud.prototype.Start = function () {
+        Cyborg.prototype.Start = function () {
             this.Reset();
         };
         // updates the game object every frame
-        Cloud.prototype.Update = function () {
+        Cyborg.prototype.Update = function () {
             this.Move();
             this.CheckBounds();
         };
         // reset the objects location to some value
-        Cloud.prototype.Reset = function () {
-            this.x = Math.floor((Math.random() * (499 + this.width)) + this.halfWidth) + 600;
-            this.y = this.height;
+        Cyborg.prototype.Reset = function () {
+            this.x = Math.floor((Math.random() * 100)) + 1300;
+            this.y = Math.floor(Math.random() * Math.floor(this.height)) + 40;
             this._dx = Math.floor((Math.random() * 4) - 2);
             this._dy = Math.floor((Math.random() * 5) + 5);
         };
         // move the object to some new location
-        Cloud.prototype.Move = function () {
-            this.y += this._dy;
-            this.x += this._dx;
+        Cyborg.prototype.Move = function () {
+            this.x -= this._dx + 8;
+            this.y += this._dy - Math.floor(Math.random() * 10);
         };
         // check to see if some boundary has been passed
-        Cloud.prototype.CheckBounds = function () {
+        Cyborg.prototype.CheckBounds = function () {
             // check lower bounds
             if (this.y >= 480 + this.height) {
                 this.Reset();
             }
-            if (this.x >= 1000 + this.width) {
+            if (this.x <= 0 + this.width) {
                 this.Reset();
             }
         };
-        return Cloud;
+        return Cyborg;
     }(objects.GameObject));
-    objects.Cloud = Cloud;
+    objects.Cyborg = Cyborg;
 })(objects || (objects = {}));
-//# sourceMappingURL=cloud.js.map
+//# sourceMappingURL=cyborg.js.map

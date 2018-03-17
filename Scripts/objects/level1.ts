@@ -1,18 +1,16 @@
 module objects {
-  export class Ocean extends createjs.Bitmap {
+  export class Level1 extends createjs.Bitmap {
     // private instance variables
     private _dx: number;
 
     // public properties
-
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
-      super(assetManager.getResult("ocean"));
+      super(assetManager.getResult("level1"));
       this.Start();
     }
 
     // private methods
-
     // reset the objects location to some value
     private _reset():void {
       this.x = 0;
@@ -32,7 +30,6 @@ module objects {
     }
 
     // public methods
-
     // Initializes variables and creates new objects
     public Start():void {
       this._dx = 2; //speed
