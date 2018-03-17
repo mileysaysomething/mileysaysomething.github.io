@@ -41,9 +41,9 @@ var managers;
         });
         // private methods
         ScoreBoard.prototype._initialize = function () {
-            this.LivesLabel = new objects.Label("Lives: 0", "20px", "Consolas", "#FFFF00", 50, 10, false);
-            this.ScoreLabel = new objects.Label("Score: 99999", "20px", "Consolas", "#FFFF00", 500, 10, false);
-            this.HighScoreLabel = new objects.Label("High Score: 99999", "40px", "Consolas", "#FFFF00", 320, 240, true);
+            this.LivesLabel = new objects.Label("Lives: 0", "30px", "Consolas", "#000000", 50, 10, false);
+            this.ScoreLabel = new objects.Label("Score: 99999", "30px", "Consolas", "#000000", 500, 10, false);
+            this.HighScoreLabel = new objects.Label("High Score: 99999", "50px", "Consolas", "#000000", 320, 240, true);
             this.Lives = 5;
             this.Score = 0;
             this.HighScore = 0;

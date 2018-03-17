@@ -7,7 +7,6 @@ module scenes {
     private _cyborg: objects.Cyborg[];
     private _cyborgNum: number;
     private _scoreBoard: managers.ScoreBoard;
-
     private _muteBtn: objects.Button;
     private _unmuteBtn: objects.Button;
 
@@ -111,6 +110,10 @@ module scenes {
         this.addChild(cyborg);
       });
 
+       // add scoreboard labels to the scene
+       this.addChild(this._scoreBoard.LivesLabel);
+       this.addChild(this._scoreBoard.ScoreLabel);
+
       // add the muteBtn to the scene
       this.addChild(this._muteBtn);
       this._muteBtn.on("click", this._muteBtnClick);
@@ -119,9 +122,7 @@ module scenes {
       this.addChild(this._unmuteBtn);
       this._unmuteBtn.on("click", this._unmuteBtnClick);
 
-       // add scoreboard labels to the scene
-       this.addChild(this._scoreBoard.LivesLabel);
-       this.addChild(this._scoreBoard.ScoreLabel);
+      
     }
   }
 }

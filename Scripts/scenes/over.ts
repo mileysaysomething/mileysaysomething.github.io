@@ -23,8 +23,8 @@ module scenes {
 
     // Initialize Game Variables and objects
     public Start(): void {
-      this._overLabel = new objects.Label("Game Over", "40px", "Consolas", "#ffffff", 320, 240, true);
-      this._backButton = new objects.Button(this.assetManager, "backButton", 320, 340);
+      this._overLabel = new objects.Label("Game Over", "40px", "Consolas", "#ffffff", 675, 240, true);
+      this._backButton = new objects.Button(this.assetManager, "backButton", 675, 340);
       this.Main();
     }
 

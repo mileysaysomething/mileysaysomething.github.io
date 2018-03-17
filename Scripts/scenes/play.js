@@ -21,21 +21,25 @@ var scenes;
         // Public Methods
         // Initialize Game Variables and objects
         PlayScene.prototype.Start = function () {
-            this._ocean = new objects.Level1(this.assetManager);
-            this._plane = new objects.Ninja(this.assetManager);
+            this._level1 = new objects.Level1(this.assetManager);
+            this._ninja = new objects.Ninja(this.assetManager);
+            this._bullet = new objects.Bullet(this.assetManager);
             this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
             this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
-            // instantiate the cloud array
-            this._clouds = new Array();
-            this._cloudNum = 3;
-            // loop and add each cloud to the array
-            for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new objects.Cyborg(this.assetManager);
+            // instantiate the cyborg array
+            this._cyborg = new Array();
+            this._cyborgNum = 5;
+            // loop and add each cyborg to the array
+            for (var count = 0; count < this._cyborgNum; count++) {
+                this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
             //loop sound of ninja
             this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
             this._ninjaBGMSound.loop = -1; // play forever
             this._ninjaBGMSound.volume = 0.1;
+            // create the scoreboard UI for the Scene
+            this._scoreBoard = new managers.ScoreBoard();
+            objects.Game.scoreBoard = this._scoreBoard;
             this.Main();
         };
         // Private Methods
@@ -50,23 +54,37 @@ var scenes;
         //this._ninjaBGMSound.volume = 0.0;
         //this._ninjaBGMSound.stop();
         PlayScene.prototype.Update = function () {
-            this._ocean.Update();
-            this._plane.Update();
-            this._clouds.forEach(function (cloud) {
-                cloud.Update();
+            var _this = this;
+            this._level1.Update();
+            this._ninja.Update();
+            this._bullet.Update();
+            this._cyborg.forEach(function (cyborg) {
+                cyborg.Update();
+                // check collision between plane and current cyborg
+                managers.Collision.Check(cyborg, _this._ninja);
+                managers.Collision.CheckU(_this._bullet, cyborg);
             });
+            // if lives fall below zero switch scenes to the game over scene
+            if (this._scoreBoard.Lives <= 0) {
+                objects.Game.currentScene = config.Scene.OVER;
+            }
         };
         // This is where the fun happens
         PlayScene.prototype.Main = function () {
             var _this = this;
-            // add the ocean to the scene
-            this.addChild(this._ocean);
+            // add the level1 to the scene
+            this.addChild(this._level1);
+            // add the bullet to the scene
+            this.addChild(objects.Game.bullet);
             // add the plane to the scene
-            this.addChild(this._plane);
-            // add clouds to the scene
-            this._clouds.forEach(function (cloud) {
-                _this.addChild(cloud);
+            this.addChild(this._ninja);
+            // add cyborg to the scene
+            this._cyborg.forEach(function (cyborg) {
+                _this.addChild(cyborg);
             });
+            // add scoreboard labels to the scene
+            this.addChild(this._scoreBoard.LivesLabel);
+            this.addChild(this._scoreBoard.ScoreLabel);
             // add the muteBtn to the scene
             this.addChild(this._muteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
