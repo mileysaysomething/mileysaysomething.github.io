@@ -25,18 +25,22 @@ var scenes;
         // Public Methods
         // Initialize Game Variables and objects
         StartScene.prototype.Start = function () {
-            this._welcomeLabel = new objects.Label("Cyborg War", "60px", "bold", "#ffffff", 675, 240, true);
+            this._coverImg = new createjs.Bitmap("./Assets/images/cover2.png");
+            this._welcomeLabel = new objects.Label("Cyborg War", "60px", "bold", "#ffffff", 675, 100, true);
             this._startButton = new objects.Button(this.assetManager, "startButton", 675, 340);
-            // this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 657, 440);
-            //this._coverImg = "coverImg";
+            // this._sparkle = new createjs.Bitmap("./Assets/images/sparkle.gif");
             this.Main();
         };
         StartScene.prototype.Update = function () {
         };
         // This is where the fun happens
         StartScene.prototype.Main = function () {
+            // add the coverImg to the scene
+            this.addChild(this._coverImg);
             // add the welcome label to the scene
             this.addChild(this._welcomeLabel);
+            // add the sparkle to the scene
+            //this.addChild(this._sparkle);
             // add the startButton to the scene
             this.addChild(this._startButton);
             this._startButton.on("click", this._startButtonClick);

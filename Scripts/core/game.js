@@ -22,7 +22,8 @@
         { id: "ninjaBGM", src: "./Assets/audio/lvl1BGM.mp3" },
         { id: "muteBtn", src: "./Assets/images/muteBtn.png" },
         { id: "unmuteBtn", src: "./Assets/images/unmuteBtn.png" },
-        { id: "coverImg", src: "./Assets/images/cover.png" }
+        { id: "coverImg", src: "./Assets/images/cover2.png" },
+        { id: "sparkle", src: "./Assets/images/sparkle.gif" }
     ];
     // preloads assets
     function Init() {
