@@ -23,7 +23,10 @@
     {id: "plane", src:"./Assets/images/ninja.png"},
     {id: "cloud", src:"./Assets/images/cyborg.png"},
     {id: "ninjaBGM", src:"./Assets/audio/lvl1BGM.mp3"},
-    {id: "muteBtn", src:"./Assets/images/soundBtn.png"}
+    {id: "muteBtn", src:"./Assets/images/muteBtn.png"},
+    {id: "unmuteBtn", src:"./Assets/images/unmuteBtn.png"},
+    { id: "coverImg", src: "./Assets/images/cover.png" }
+
   ];
 
   // preloads assets

@@ -23,7 +23,8 @@ var scenes;
         PlayScene.prototype.Start = function () {
             this._ocean = new objects.Ocean(this.assetManager);
             this._plane = new objects.Plane(this.assetManager);
-            this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 65);
+            this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
+            this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
             // instantiate the cloud array
             this._clouds = new Array();
             this._cloudNum = 3;
@@ -40,9 +41,14 @@ var scenes;
         // Private Methods
         PlayScene.prototype._muteBtnClick = function () {
             createjs.Sound.stop();
-            //this._ninjaBGMSound.volume = 0.0;
-            //this._ninjaBGMSound.stop();
         };
+        PlayScene.prototype._unmuteBtnClick = function () {
+            this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
+            this._ninjaBGMSound.loop = -1; // play forever
+            this._ninjaBGMSound.volume = 0.1;
+        };
+        //this._ninjaBGMSound.volume = 0.0;
+        //this._ninjaBGMSound.stop();
         PlayScene.prototype.Update = function () {
             this._ocean.Update();
             this._plane.Update();
@@ -64,6 +70,9 @@ var scenes;
             // add the muteBtn to the scene
             this.addChild(this._muteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
+            // add the unmuteBtn to the scene
+            this.addChild(this._unmuteBtn);
+            this._unmuteBtn.on("click", this._unmuteBtnClick);
         };
         return PlayScene;
     }(objects.Scene));

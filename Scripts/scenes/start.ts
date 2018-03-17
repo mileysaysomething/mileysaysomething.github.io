@@ -3,12 +3,9 @@ module scenes {
     // Private Instance Variables
     private _welcomeLabel: objects.Label;
     private _startButton: objects.Button;
-   // private _muteBtn: objects.Button;
-
-    //private _ninjaBGMSound: createjs.AbstractSoundInstance;
-    
+   
     // Public Properties
-
+    public _coverImg;
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
       super(assetManager);
@@ -29,7 +26,9 @@ module scenes {
       this._welcomeLabel = new objects.Label("Cyborg War", "60px", "bold", "#ffffff", 675, 240, true);
       this._startButton = new objects.Button(this.assetManager, "startButton", 675, 340);
      // this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 657, 440);
-      this.Main();
+      //this._coverImg = "coverImg";
+     
+     this.Main();
     }
 
     public Update(): void {

@@ -8,7 +8,9 @@ module scenes {
     private _cloudNum: number;
 
     private _muteBtn: objects.Button;
-   
+    private _unmuteBtn: objects.Button;
+
+    
     public _ninjaBGMSound: createjs.AbstractSoundInstance;
     
     // Constructor
@@ -26,7 +28,8 @@ module scenes {
       this._ocean = new objects.Ocean(this.assetManager);
       this._plane = new objects.Plane(this.assetManager);
      
-      this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 1300, 65);
+      this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 1300, 80);
+      this._unmuteBtn = new objects.Button(this.assetManager,"unmuteBtn", 1300, 30);
 
 
       // instantiate the cloud array
@@ -46,10 +49,21 @@ module scenes {
     }
     // Private Methods
      private _muteBtnClick():void{
-      createjs.Sound.stop();
+     
+        createjs.Sound.stop();
+      
+      }
+    private _unmuteBtnClick():void {
+     
+        this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
+        this._ninjaBGMSound.loop = -1; // play forever
+        this._ninjaBGMSound.volume = 0.1;
+      
+    }
+      
       //this._ninjaBGMSound.volume = 0.0;
       //this._ninjaBGMSound.stop();
- }
+ 
 
 
     public Update(): void {
@@ -81,6 +95,10 @@ module scenes {
       // add the muteBtn to the scene
       this.addChild(this._muteBtn);
       this._muteBtn.on("click", this._muteBtnClick);
+
+      // add the unmuteBtn to the scene
+      this.addChild(this._unmuteBtn);
+      this._unmuteBtn.on("click", this._unmuteBtnClick);
     }
   }
 }
