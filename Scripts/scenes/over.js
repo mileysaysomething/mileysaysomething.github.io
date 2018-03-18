@@ -28,6 +28,9 @@ var scenes;
         OverScene.prototype.Start = function () {
             this._overLabel = new objects.Label("Game Over", "40px", "Consolas", "#ffffff", 675, 240, true);
             this._backButton = new objects.Button(this.assetManager, "backButton", 675, 340);
+            // create the scoreboard UI for the Scene
+            this._scoreBoard = new managers.ScoreBoard();
+            objects.Game.scoreBoard = this._scoreBoard;
             this.Main();
         };
         OverScene.prototype.Update = function () {
@@ -38,6 +41,8 @@ var scenes;
             this.addChild(this._overLabel);
             // add the backButton to the scene
             this.addChild(this._backButton);
+            // add scoreboard labels to the scene
+            this.addChild(this._scoreBoard.ScoreLabel);
             // event listeners
             this._backButton.on("click", this._backButtonClick);
         };

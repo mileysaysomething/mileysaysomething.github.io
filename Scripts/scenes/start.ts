@@ -26,7 +26,7 @@ module scenes {
     // Initialize Game Variables and objects
     public Start(): void {
       this._coverImg = new createjs.Bitmap("./Assets/images/cover2.png");
-      this._welcomeLabel = new objects.Label("Cyborg War", "60px", "bold", "#ffffff", 675, 100, true);
+      this._welcomeLabel = new objects.Label("Cyborg War", "60px", "Pressstart2p", "#ffffff", 675, 100, true);
       this._startButton = new objects.Button(this.assetManager, "startButton", 675, 340);
      // this._sparkle = new createjs.Bitmap("./Assets/images/sparkle.gif");
       
