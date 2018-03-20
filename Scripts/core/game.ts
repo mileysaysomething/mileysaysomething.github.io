@@ -20,6 +20,8 @@
     {id: "nextButton", src:"./Assets/images/nextButton.png"},
     {id: "backButton", src:"./Assets/images/backBtn.png"},
     {id: "level1", src:"./Assets/images/fujiNew.png"},
+    {id: "level2", src:"./Assets/images/BambooNew.png"},
+    {id: "bullet", src:"./Assets/images/bullet.png"},
     {id: "ninja", src:"./Assets/images/ninja.png"},
     {id: "cyborg", src:"./Assets/images/cyborg.png"},
     {id: "ninjaBGM", src:"./Assets/audio/lvl1BGM.mp3"},
@@ -79,6 +81,9 @@
       case config.Scene.PLAY:
         currentScene = new scenes.PlayScene(assetManager);
       break;
+      case config.Scene.PLAY2:
+      currentScene = new scenes.PlayScene2(assetManager);
+       break;
       case config.Scene.OVER:
         currentScene = new scenes.OverScene(assetManager);
       break;

@@ -4,7 +4,17 @@ module objects {
   export class Cyborg extends objects.GameObject {
     // private instance variables
     private pattern:number = 0;
+    private interval:number = 0;
     // public properties
+    private _lives:number;
+
+
+    get Lives():number {
+      return this.x;
+    
+    }
+ 
+
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
       super(assetManager, "cyborg");
@@ -38,7 +48,16 @@ module objects {
     // move the object to some new location
     public Move():void {
       this.x -= this._dx + 8;
-      this.y += this._dy  - Math.floor(Math.random() * 10);
+      if (this.interval % 5 == 0){
+        this.y -= (this._dy  - Math.floor(Math.random() * 10)) - 3;
+
+
+      }
+      else{
+        this.y += (this._dy  - Math.floor(Math.random() * 10));
+
+      }
+   
     
     }
 
@@ -46,7 +65,8 @@ module objects {
     public CheckBounds():void {
       // check lower bounds
       if(this.y >= 480 + this.height) {
-        this.Reset();
+        this.Reset(); 
+
       }
 
       if(this.x <= 0 + this.width) {

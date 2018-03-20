@@ -43,18 +43,19 @@ var objects;
             // mouse controls
             //  this.x = objects.Game.stage.mouseX;      
             // this.y = objects.Game.stage.mouseY;
+            // level 2 - 3 this.setTransform(this.x,this.y,this.scaleX,this.scaleY, 180,0,0)
             // keyboard controls
             if (objects.Game.keyboardManager.moveLeft) {
-                this.x -= 5;
+                this.x -= 3;
             }
             if (objects.Game.keyboardManager.moveRight) {
-                this.x += 5;
+                this.x += 3;
             }
             if (objects.Game.keyboardManager.moveForward) {
-                this.y -= 10;
+                this.y -= 7;
             }
             if (objects.Game.keyboardManager.moveBackward) {
-                this.y += 10;
+                this.y += 7;
             }
         };
         // check to see if some boundary has been passed

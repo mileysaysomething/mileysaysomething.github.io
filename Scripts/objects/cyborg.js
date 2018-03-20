@@ -13,15 +13,22 @@ var objects;
     console.log("Enemy loaded");
     var Cyborg = /** @class */ (function (_super) {
         __extends(Cyborg, _super);
-        // public properties
         // Constructor
         function Cyborg(assetManager) {
             var _this = _super.call(this, assetManager, "cyborg") || this;
             // private instance variables
             _this.pattern = 0;
+            _this.interval = 0;
             _this.Start();
             return _this;
         }
+        Object.defineProperty(Cyborg.prototype, "Lives", {
+            get: function () {
+                return this.x;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         // public methods
         // Initializes variables and creates new objects
@@ -43,7 +50,12 @@ var objects;
         // move the object to some new location
         Cyborg.prototype.Move = function () {
             this.x -= this._dx + 8;
-            this.y += this._dy - Math.floor(Math.random() * 10);
+            if (this.interval % 5 == 0) {
+                this.y -= (this._dy - Math.floor(Math.random() * 10)) - 3;
+            }
+            else {
+                this.y += (this._dy - Math.floor(Math.random() * 10));
+            }
         };
         // check to see if some boundary has been passed
         Cyborg.prototype.CheckBounds = function () {

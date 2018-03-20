@@ -27,7 +27,7 @@ module scenes {
       this._backButton = new objects.Button(this.assetManager, "backButton", 675, 340);
   
       // create the scoreboard UI for the Scene
-      this._scoreBoard = new managers.ScoreBoard();
+      this._scoreBoard = new managers.ScoreBoard( );
        objects.Game.scoreBoard = this._scoreBoard;
 
       this.Main();

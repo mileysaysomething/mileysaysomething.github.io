@@ -1,78 +1,98 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var objects;
 (function (objects) {
     var shape;
     var bulletList = {};
-    var Bullet = /** @class */ (function () {
-        // public properties
+    var Bullet = /** @class */ (function (_super) {
+        __extends(Bullet, _super);
         // Constructor
-        function Bullet(object) {
+        function Bullet(assetManager) {
+            var _this = _super.call(this, assetManager, "bullet") || this;
             // private instance letiables
-            this.frameCount = 0;
-            this.deleter = 5;
-            this.x = 0;
-            this.y = 0;
-            this.randomlyGenerateBullet = function () {
+            _this.frameCount = 0;
+            _this.deleter = 5;
+            _this.ninja_pos = 0;
+            _this.radius = 10;
+            //Create Standard list
+            _this.randomlyGenerateBullet = function () {
                 //Math.random() returns a number between 0 and 1
-                var x = this.x;
+                var x = this.x + 30;
                 var y = this.y;
-                var radius = 10;
                 var id = Math.random();
                 var angle = 360;
                 var spdX = Math.cos(angle / 180 * Math.PI) * 5;
                 var spdY = Math.sin(angle / 180 * Math.PI) * 5;
-                Bullet.Bullet(id, x, y, spdX, spdY, radius);
+                Bullet.Bullet(id, x, y, spdX, spdY);
             };
-            this.updateEntityBulletPosition = function (something) {
-                something.x += something.spdX * 9;
-                something.y += something.spdY * 9;
+            //Specifications of my Bullet - will be placed at that x, and y positio
+            _this.updateEntityBulletPosition = function (bulletObj) {
+                bulletObj.x += bulletObj.spdX * 20;
+                bulletObj.y += bulletObj.spdY * 20;
+                this.x = bulletObj.x;
+                this.y = bulletObj.y;
+                // console.log(this._nextX);     
             };
-            this.Start();
+            _this.Start();
+            return _this;
         }
+        Object.defineProperty(Bullet.prototype, "nextX", {
+            // public properties
+            get: function () {
+                return this._nextX;
+            },
+            set: function (finalNumber) {
+                this._nextX = finalNumber;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         // public methods
         // Initializes letiables and creates new objects
         Bullet.prototype.Start = function () {
-            this.y = 180;
+            this.y = 300;
             this.x = 180;
         };
-        Bullet.Bullet = function (id, x, y, spdX, spdY, radius) {
+        Bullet.Bullet = function (id, x, y, spdX, spdY) {
             var asd = {
                 x: x,
-                spdX: spdX,
                 y: y,
-                spdY: spdY,
-                name: 'E',
-                id: id,
-                radius: radius,
-                color: '',
+                spdX: spdX,
+                spdY: spdY
             };
             bulletList[id] = asd;
         };
-        Bullet.prototype.updateEntityBullet = function (something) {
-            this.drawEntity(something);
-            this.updateEntityBulletPosition(something);
-        };
-        Bullet.prototype.drawEntity = function (something) {
-            var graphics = new createjs.Graphics().beginFill("#99A6DC").beginStroke("10").
-                drawCircle(something.x, something.y, something.radius);
-            // loop and add each cyborg to the array
-            // how to make bullets curve shape.y = this.y + 10;
-            shape = new createjs.Shape(graphics).set({ name: "newShapes" });
-            objects.Game.stage.addChild(shape);
+        Bullet.prototype.updateEntityBullet = function (bulletObj) {
+            this.updateEntityBulletPosition(bulletObj);
         };
         // updates the game object every frame
         Bullet.prototype.Update = function () {
-            objects.Game.stage.removeChild(shape);
             this.Move();
             this.frameCount = this.frameCount + 1;
-            if (this.frameCount % 17 === 0) {
+            if (this.frameCount % 2 === 0) {
                 this.randomlyGenerateBullet();
-            } //every 1 sec
-            if (this.frameCount % 34 === 0) {
+            }
+            if (this.frameCount % 25 === 0) {
                 this.Reset();
             } //every 1 sec
+            //every 1 sec
+            //every 1 sec
             for (var key in bulletList) {
                 this.updateEntityBullet(bulletList[key]);
+                this.x = bulletList[key].x;
+                //    if (this.x >= 1300 ){
+                //     this.x -= bulletList[key].x;        
+                //  }   
+                //  console.log("final position", Math.max(this.x)); works why??
             }
         };
         // reset the objects location to some value
@@ -85,36 +105,9 @@ var objects;
         //create a class that only moves bullets
         Bullet.prototype.Move = function () {
             // keyboard controls
-            if (objects.Game.keyboardManager.moveLeft) {
-                if (this.x <= 100) {
-                    this.x = 100;
-                }
-                this.x -= 5;
-            }
-            if (objects.Game.keyboardManager.moveRight) {
-                if (this.x >= 1300) {
-                    this.x = 1300;
-                }
-                this.x += 5;
-            }
-            //Upwards
-            if (objects.Game.keyboardManager.moveForward) {
-                if (this.y <= 50) {
-                    this.y = 50;
-                }
-                this.y -= 10;
-            }
-            //Downwards 
-            if (objects.Game.keyboardManager.moveBackward) {
-                if (this.y >= 430) {
-                    this.y = 430;
-                }
-                this.y += 10;
-                //console.log("position: " + this.y);
-            }
         };
         return Bullet;
-    }());
+    }(objects.GameObject));
     objects.Bullet = Bullet;
 })(objects || (objects = {}));
 //# sourceMappingURL=bullet.js.map

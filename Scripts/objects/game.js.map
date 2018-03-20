@@ -1,1 +1,1 @@
-{"version":3,"file":"game.js","sourceRoot":"","sources":["game.ts"],"names":[],"mappings":"AAAA,IAAO,OAAO,CAUb;AAVD,WAAO,OAAO;IACZ;QAAA;QAQA,CAAC;QAFe,cAAS,GAAU,CAAC,CAAE,CAAC,OAAO;QAE9C,WAAC;KAAA,AARD,IAQC;IARY,YAAI,OAQhB,CAAA;AACH,CAAC,EAVM,OAAO,KAAP,OAAO,QAUb"}
+{"version":3,"file":"game.js","sourceRoot":"","sources":["game.ts"],"names":[],"mappings":"AAAA,IAAO,OAAO,CAYb;AAZD,WAAO,OAAO;IACZ;QAAA;QAUA,CAAC;QAFe,cAAS,GAAU,CAAC,CAAE,CAAC,OAAO;QAE9C,WAAC;KAAA,AAVD,IAUC;IAVY,YAAI,OAUhB,CAAA;AACH,CAAC,EAZM,OAAO,KAAP,OAAO,QAYb"}

@@ -10,23 +10,22 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var PlayScene = /** @class */ (function (_super) {
-        __extends(PlayScene, _super);
+    var PlayScene2 = /** @class */ (function (_super) {
+        __extends(PlayScene2, _super);
+        // Public Properties
         // Constructor
-        function PlayScene(assetManager) {
+        function PlayScene2(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this.Start();
             return _this;
         }
+        // Private Mathods
         // Public Methods
         // Initialize Game Variables and objects
-        PlayScene.prototype.Start = function () {
-            this._level1 = new objects.Level1(this.assetManager);
+        PlayScene2.prototype.Start = function () {
             this._level2 = new objects.Level2(this.assetManager);
             this._ninja = new objects.Ninja(this.assetManager);
             this._bullet = new objects.Bullet(this.assetManager);
-            this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
-            this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
             // instantiate the cyborg array
             this._cyborg = new Array();
             this._cyborgNum = 20;
@@ -34,34 +33,17 @@ var scenes;
             for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
-            //loop sound of ninja
-            this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
-            this._ninjaBGMSound.loop = -1; // play forever
-            this._ninjaBGMSound.volume = 0.1;
+            this._engineSound = createjs.Sound.play("engine");
+            this._engineSound.loop = -1; // play forever
+            this._engineSound.volume = 0.3;
             // create the scoreboard UI for the Scene
             this._scoreBoard = new managers.ScoreBoard();
             objects.Game.scoreBoard = this._scoreBoard;
             this.Main();
         };
-        // Private Methods
-        PlayScene.prototype._muteBtnClick = function () {
-            createjs.Sound.stop();
-        };
-        PlayScene.prototype._unmuteBtnClick = function () {
-            this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
-            this._ninjaBGMSound.loop = -1; // play forever
-            this._ninjaBGMSound.volume = 0.1;
-        };
-        PlayScene.prototype.changescene = function () {
-            if (this._scoreBoard.Score > 4000) {
-                objects.Game.currentScene = config.Scene.START;
-            }
-        };
-        //this._ninjaBGMSound.volume = 0.0;
-        //this._ninjaBGMSound.stop();
-        PlayScene.prototype.Update = function () {
+        // triggered every frame
+        PlayScene2.prototype.Update = function () {
             var _this = this;
-            this._level1.Update();
             this._level2.Update();
             this._ninja.Update();
             this._bullet.Update();
@@ -83,25 +65,18 @@ var scenes;
             });
             // if lives fall below zero switch scenes to the game over scene
             if (this._scoreBoard.Lives <= 0) {
+                this._engineSound.stop();
                 objects.Game.currentScene = config.Scene.OVER;
-            }
-            if (this._scoreBoard.Score > 4000) {
-                objects.Game.currentScene = config.Scene.START;
-            }
-            if (this._scoreBoard.Score >= 100) {
-                this._ninjaBGMSound.stop();
-                this.removeChild();
-                objects.Game.currentScene = config.Scene.PLAY2;
             }
         };
         // This is where the fun happens
-        PlayScene.prototype.Main = function () {
+        PlayScene2.prototype.Main = function () {
             var _this = this;
-            // add the level1 to the scene
-            this.addChild(this._level1);
+            // add the ocean to the scene
+            this.addChild(this._level2);
             // add the bullet to the scene
             this.addChild(this._bullet);
-            // add the plane to the scene
+            // add the ninja to the scene
             this.addChild(this._ninja);
             // add cyborg to the scene
             this._cyborg.forEach(function (cyborg) {
@@ -110,15 +85,9 @@ var scenes;
             // add scoreboard labels to the scene
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
-            // add the muteBtn to the scene
-            this.addChild(this._muteBtn);
-            this._muteBtn.on("click", this._muteBtnClick);
-            // add the unmuteBtn to the scene
-            this.addChild(this._unmuteBtn);
-            this._unmuteBtn.on("click", this._unmuteBtnClick);
         };
-        return PlayScene;
+        return PlayScene2;
     }(objects.Scene));
-    scenes.PlayScene = PlayScene;
+    scenes.PlayScene2 = PlayScene2;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=play.js.map
+//# sourceMappingURL=play2.js.map
