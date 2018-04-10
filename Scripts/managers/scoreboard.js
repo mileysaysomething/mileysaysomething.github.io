@@ -68,7 +68,7 @@ var managers;
                 this.Score = managers.Collision.CurrentScore;
                 this.HighScore = managers.Collision.CurrentHighScore;
             }
-            else if (objects.Game.currentScene == 3) {
+            else {
                 this.Time = managers.Collision.CurrenTime;
                 this.Lives = managers.Collision.CurrentLive;
                 this.Score = managers.Collision.CurrentScore;

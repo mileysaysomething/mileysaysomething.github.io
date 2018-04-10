@@ -80,12 +80,13 @@ module managers {
       this.HighScore = Collision.CurrentHighScore;
 
     }
-    else if(objects.Game.currentScene == 3){
+    else{
       this.Time = Collision.CurrenTime;
       this.Lives = Collision.CurrentLive;
-      this.Score = Collision.CurrentScore;  
+      this.Score = Collision.CurrentScore;
       this.HighScore = Collision.CurrentHighScore;
     }
+
     
    /*
     else if(objects.Game.currentScene == 2 || objects.Game.currentScene == 3 ){
