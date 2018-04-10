@@ -68,6 +68,21 @@ var managers;
                 this.Score = managers.Collision.CurrentScore;
                 this.HighScore = managers.Collision.CurrentHighScore;
             }
+            else if (objects.Game.currentScene == 3) {
+                this.Time = managers.Collision.CurrenTime;
+                this.Lives = managers.Collision.CurrentLive;
+                this.Score = managers.Collision.CurrentScore;
+                this.HighScore = managers.Collision.CurrentHighScore;
+            }
+            /*
+             else if(objects.Game.currentScene == 2 || objects.Game.currentScene == 3 ){
+               this.Time = Collision.CurrenTime;
+               this.Lives = Collision.CurrentLive;
+               this.Score = Collision.CurrentScore;
+               this.HighScore = Collision.CurrentHighScore;
+         
+             }
+             */
         };
         return ScoreBoard;
     }());

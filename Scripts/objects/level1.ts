@@ -6,7 +6,7 @@ module objects {
     // public properties
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
-      super(assetManager.getResult("level3"));
+      super(assetManager.getResult("level1"));
       this.Start();
     }
 

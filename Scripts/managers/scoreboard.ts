@@ -72,6 +72,7 @@ module managers {
       this.Score = 0;
       this.HighScore = 0;
      }
+     
      else if(objects.Game.currentScene == 2){
       this.Time = Collision.CurrenTime;
       this.Lives = Collision.CurrentLive;
@@ -79,6 +80,22 @@ module managers {
       this.HighScore = Collision.CurrentHighScore;
 
     }
+    else if(objects.Game.currentScene == 3){
+      this.Time = Collision.CurrenTime;
+      this.Lives = Collision.CurrentLive;
+      this.Score = Collision.CurrentScore;  
+      this.HighScore = Collision.CurrentHighScore;
+    }
+    
+   /*
+    else if(objects.Game.currentScene == 2 || objects.Game.currentScene == 3 ){
+      this.Time = Collision.CurrenTime;
+      this.Lives = Collision.CurrentLive;
+      this.Score = Collision.CurrentScore;
+      this.HighScore = Collision.CurrentHighScore;
+
+    }
+    */
      
     }
 

@@ -53,7 +53,7 @@ module scenes {
   
         // instantiate the cyborg array
         this._cyborg = new Array<objects.Cyborg>();
-        this._cyborgNum = 20;
+        this._cyborgNum = 30;
         // loop and add each cyborg to the array
         for (let count = 0; count < this._cyborgNum; count++) {
           this._cyborg[count] = new objects.Cyborg(this.assetManager);

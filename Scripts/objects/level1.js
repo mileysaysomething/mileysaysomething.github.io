@@ -15,7 +15,7 @@ var objects;
         // public properties
         // Constructor
         function Level1(assetManager) {
-            var _this = _super.call(this, assetManager.getResult("level3")) || this;
+            var _this = _super.call(this, assetManager.getResult("level1")) || this;
             _this.Start();
             return _this;
         }
