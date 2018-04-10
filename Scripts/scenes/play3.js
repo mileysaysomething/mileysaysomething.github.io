@@ -33,7 +33,7 @@ var scenes;
             console.log(scenes.PlayScene.soundOn);
             // instantiate the cyborg array
             this._cyborg = new Array();
-            this._cyborgNum = 20;
+            this._cyborgNum = 30;
             // loop and add each cyborg to the array
             for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);

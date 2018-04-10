@@ -64,6 +64,7 @@ var scenes;
         PlayScene2.prototype.Update = function () {
             var _this = this;
             this._level2.Update();
+            this._level3.Update();
             this._ninja.Update();
             this._bullet.Update();
             this._bullet.x++;
@@ -92,6 +93,12 @@ var scenes;
             if (this._scoreBoard.Lives <= 0) {
                 this._muteBtnClick();
                 objects.Game.currentScene = config.Scene.OVER;
+            }
+            if (this._scoreBoard.Score >= 1000) {
+                this._ninjaBGMSound.stop();
+                this.removeChild();
+                objects.Game.currentScene = config.Scene.PLAY3;
+                objects.Game.store = this._scoreBoard.Score;
             }
         };
         // This is where the fun happens
