@@ -8,8 +8,6 @@
 /// <reference path="../../Scripts/objects/level3.ts"/>
 
 /// <reference path="../../Scripts/objects/ninja.ts"/>
-/// <reference path="../../Scripts/objects/ninjaNew.ts"/>
-
 /// <reference path="../../Scripts/objects/bullet.ts"/>
 /// <reference path="../../Scripts/objects/cyborg.ts"/>
 /// <reference path="../../Scripts/scenes/over.ts"/>

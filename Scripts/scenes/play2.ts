@@ -97,7 +97,6 @@ module scenes {
     // triggered every frame
     public Update(): void {
       this._level2.Update();
-      this._level3.Update();
 
       this._ninja.Update();
       this._bullet.Update();
@@ -146,19 +145,7 @@ module scenes {
         objects.Game.currentScene = config.Scene.OVER;
       }
 
-
-      if(this._scoreBoard.Score >= 1000) {
-        
-        this._ninjaBGMSound.stop();
-        this.removeChild()
-         objects.Game.currentScene = config.Scene.PLAY3;
-         objects.Game.store = this._scoreBoard.Score;
-      }
-
     }
-
-    
-
 
     // This is where the fun happens
     public Main(): void {
