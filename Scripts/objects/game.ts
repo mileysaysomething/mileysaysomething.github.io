@@ -6,6 +6,9 @@ module objects {
     public static scoreBoard: managers.ScoreBoard;
     public static bullet: objects.Bullet;
     public static cyborg: objects.Cyborg;
+    public static ninja: objects.Ninja;
+
+    public static store:number; 
 
     public static HighScore:Number = 0 ; //added
     public static keyboardManager: managers.Keyboard;

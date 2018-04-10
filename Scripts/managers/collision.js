@@ -9,6 +9,10 @@ var managers;
             // create two vec2 objects
             var P1 = new math.Vec2(object1.x, object1.y);
             var P2 = new math.Vec2(object2.x, object2.y);
+            frameCount++;
+            if (frameCount % 1000 == 0) {
+                objects.Game.scoreBoard.Time += 1;
+            }
             object1.visible = true;
             object2.visible = true;
             if (math.Vec2.Distance(P1, P2) < (object1.halfHeight + object2.halfHeight)) {
@@ -19,7 +23,7 @@ var managers;
                             if (objects.Game.HighScore <= objects.Game.scoreBoard.Score) {
                                 objects.Game.scoreBoard.HighScore = objects.Game.scoreBoard.Score;
                                 objects.Game.HighScore = objects.Game.scoreBoard.HighScore;
-                                objects.Game.scoreBoard.Lives -= 1;
+                                objects.Game.scoreBoard.Lives -= 1; //Testing
                             }
                             break;
                         case "bullet":
@@ -33,6 +37,10 @@ var managers;
                 else {
                     object2.isColliding = false;
                 }
+                this.CurrentLive = objects.Game.scoreBoard.Lives;
+                this.CurrenTime = objects.Game.scoreBoard.Time;
+                this.CurrentHighScore = objects.Game.scoreBoard.HighScore;
+                this.CurrentScore = objects.Game.scoreBoard.Score;
             }
             // The objects are t look into https://gamedev.stackexchange.com/questions/128675/how-to-detect-collisions-of-objects-in-two-different-arrayshtml-canvas
         };

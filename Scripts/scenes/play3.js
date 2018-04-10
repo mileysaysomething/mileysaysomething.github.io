@@ -10,65 +10,54 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var PlayScene = /** @class */ (function (_super) {
-        __extends(PlayScene, _super);
+    var PlayScene3 = /** @class */ (function (_super) {
+        __extends(PlayScene3, _super);
+        // Public Properties
         // Constructor
-        function PlayScene(assetManager) {
+        function PlayScene3(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this._specialTimer = 0;
             _this.Start();
             return _this;
         }
+        // Private Mathods
         // Public Methods
         // Initialize Game Variables and objects
-        PlayScene.prototype.Start = function () {
-            this._level1 = new objects.Level1(this.assetManager);
-            this._level2 = new objects.Level2(this.assetManager);
-            this._ninja = new objects.Ninja(this.assetManager);
+        PlayScene3.prototype.Start = function () {
+            this._level3 = new objects.Level3(this.assetManager);
+            this._ninja = new objects.NinjaNew(this.assetManager);
             this._bullet = new objects.Bullet(this.assetManager);
             this._special = new objects.Button(this.assetManager, "ghost", 1300, 420);
             this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
             this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
+            console.log(scenes.PlayScene.soundOn);
             // instantiate the cyborg array
             this._cyborg = new Array();
-            this._cyborgNum = 10;
+            this._cyborgNum = 20;
             // loop and add each cyborg to the array
             for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
-            //loop sound of ninja
-            this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
+            this._ninjaBGMSound = createjs.Sound.play("engine");
             this._ninjaBGMSound.loop = -1; // play forever
-            this._ninjaBGMSound.volume = 0.1;
+            this._ninjaBGMSound.volume = 0.3;
             // create the scoreboard UI for the Scene
             this._scoreBoard = new managers.ScoreBoard();
             objects.Game.scoreBoard = this._scoreBoard;
             this.Main();
         };
-        // Private Methods
-        PlayScene.prototype._muteBtnClick = function () {
-            PlayScene.soundOn = false;
+        PlayScene3.prototype._muteBtnClick = function () {
             createjs.Sound.stop();
-            console.log(PlayScene.soundOn);
         };
-        PlayScene.prototype._unmuteBtnClick = function () {
+        PlayScene3.prototype._unmuteBtnClick = function () {
             this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
             this._ninjaBGMSound.loop = -1; // play forever
             this._ninjaBGMSound.volume = 0.1;
-            PlayScene.soundOn = true;
-            console.log(PlayScene.soundOn);
         };
-        PlayScene.prototype.changescene = function () {
-            if (this._scoreBoard.Score > 4000) {
-                objects.Game.currentScene = config.Scene.START;
-            }
-        };
-        //this._ninjaBGMSound.volume = 0.0;
-        //this._ninjaBGMSound.stop();
-        PlayScene.prototype.Update = function () {
+        // triggered every frame
+        PlayScene3.prototype.Update = function () {
             var _this = this;
-            this._level1.Update();
-            this._level2.Update();
+            this._level3.Update();
             this._ninja.Update();
             this._bullet.Update();
             this._bullet.x++;
@@ -77,11 +66,11 @@ var scenes;
                 this._bullet.x = this._ninja.x;
                 this._bullet.y = this._ninja.y;
             }
-            // check collision between ninja and island
-            //  managers.Collision.Check(this.ninja, this.island);
+            // check collision between plane and island
+            //  managers.Collision.Check(this.plane, this.island);
             this._cyborg.forEach(function (cyborg) {
                 cyborg.Update();
-                // check collision between ninja and current cyborg
+                // check collision between plane and current cyborg
                 if (_this._ninja.alpha != 0.2) {
                     managers.Collision.Check(_this._ninja, cyborg);
                 }
@@ -95,21 +84,15 @@ var scenes;
             });
             // if lives fall below zero switch scenes to the game over scene
             if (this._scoreBoard.Lives <= 0) {
-                objects.Game.currentScene = config.Scene.OVER;
                 this._muteBtnClick();
-            }
-            if (this._scoreBoard.Score >= 100) {
-                this._ninjaBGMSound.stop();
-                this.removeChild();
-                objects.Game.currentScene = config.Scene.PLAY2;
-                objects.Game.store = this._scoreBoard.Score;
+                objects.Game.currentScene = config.Scene.OVER;
             }
         };
         // This is where the fun happens
-        PlayScene.prototype.Main = function () {
+        PlayScene3.prototype.Main = function () {
             var _this = this;
-            // add the level1 to the scene
-            this.addChild(this._level1);
+            // add the ocean to the scene
+            this.addChild(this._level3);
             // add the bullet to the scene
             this.addChild(this._bullet);
             // add the ninja to the scene
@@ -129,17 +112,16 @@ var scenes;
             this.addChild(this._unmuteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
             this.addChild(this._special);
-            if (PlayScene.soundOn == false) {
+            if (scenes.PlayScene.soundOn == false) {
                 this._muteBtnClick();
             }
             else {
-                PlayScene.soundOn == true;
+                scenes.PlayScene.soundOn == true;
                 this._unmuteBtnClick();
             }
         };
-        PlayScene.soundOn = true;
-        return PlayScene;
+        return PlayScene3;
     }(objects.Scene));
-    scenes.PlayScene = PlayScene;
+    scenes.PlayScene3 = PlayScene3;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=play.js.map
+//# sourceMappingURL=play3.js.map

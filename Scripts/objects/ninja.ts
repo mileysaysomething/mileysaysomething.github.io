@@ -7,12 +7,17 @@ module objects {
   export class Ninja extends objects.GameObject {
     // private instance letiables
     private frameCount: number = 0;
+    private _special: objects.Button;
+    private _activeSpecial: boolean = false;
+    private _specialTimer:number = 0;
     
 
     // public properties
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
+    
       super(assetManager, "ninja");
+      
       this.Start();
     }
 
@@ -27,20 +32,47 @@ module objects {
 
    // updates the game object every frame
     public Update(): void {
-
+     //Waiting for user to press Space until continue count
+      if (this._specialTimer % 500 == 0 && !objects.Game.keyboardManager.jump){
+        this._specialTimer += 0;
+      }
+      else{
+        this._specialTimer += 0.5
+      }
       this.Move();
       this.CheckBounds();
-
+      this._Special();
+      //this.alpha = 0;
      
     }
 
+    public _Special():void{
+      //When both true, play this tween otherwise all false
+      if (objects.Game.keyboardManager.jump  && this._activeSpecial == true)
+    {
 
-    // reset the objects location to some value
-    public Reset(): void {
-      
-      
+        createjs.Tween.get(this).to({alpha:0.2}).wait(9000).to({alpha:1});
+        //this.onsubmit(objects.Game.keyboardManager.jump);
+        console.log("first press");
+      } 
+      else{
+        this._activeSpecial = false;
+        this._resetSpecial();
+        
+      }            
+     
     }
 
+    private _resetSpecial()
+    {   
+      console.log (this._specialTimer);
+
+      if(this._specialTimer % 500  === 0
+      ){ this._activeSpecial = true; 
+      }  
+      
+
+}
   
 
     public Move(): void {
@@ -73,9 +105,8 @@ module objects {
 
 
     }
+   
 
-
-    // check to see if some boundary has been passed
     public CheckBounds(): void {
       // right boundary
       if (this.x >= 1350 - this.halfWidth) {

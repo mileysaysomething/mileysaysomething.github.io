@@ -21,15 +21,17 @@
     {id: "backButton", src:"./Assets/images/backBtn.png"},
     {id: "level1", src:"./Assets/images/fujiNew.png"},
     {id: "level2", src:"./Assets/images/BambooNew.png"},
+    {id: "level3", src:"./Assets/images/lvl3BG.png"},
     {id: "bullet", src:"./Assets/images/bullet.png"},
     {id: "ninja", src:"./Assets/images/ninja.png"},
+    {id: "ninjaNew", src:"./Assets/images/ninjaNew.png"},
     {id: "cyborg", src:"./Assets/images/cyborg.png"},
     {id: "ninjaBGM", src:"./Assets/audio/lvl1BGM.mp3"},
     {id: "muteBtn", src:"./Assets/images/muteBtn.png"},
     {id: "unmuteBtn", src:"./Assets/images/unmuteBtn.png"},
     { id: "coverImg", src: "./Assets/images/cover2.png" },
-    { id: "sparkle", src: "./Assets/images/sparkle.gif" }
-
+    { id: "sparkle", src: "./Assets/images/sparkle.gif" },
+    {id: "ghost", src:"./Assets/images/ghost.png"}
   ];
 
   // preloads assets
@@ -83,6 +85,9 @@
       break;
       case config.Scene.PLAY2:
       currentScene = new scenes.PlayScene2(assetManager);
+       break;
+       case config.Scene.PLAY3:
+      currentScene = new scenes.PlayScene3(assetManager);
        break;
       case config.Scene.OVER:
         currentScene = new scenes.OverScene(assetManager);

@@ -10,43 +10,43 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Level1 = /** @class */ (function (_super) {
-        __extends(Level1, _super);
+    var Level3 = /** @class */ (function (_super) {
+        __extends(Level3, _super);
         // public properties
         // Constructor
-        function Level1(assetManager) {
+        function Level3(assetManager) {
             var _this = _super.call(this, assetManager.getResult("level3")) || this;
             _this.Start();
             return _this;
         }
         // private methods
         // reset the objects location to some value
-        Level1.prototype._reset = function () {
+        Level3.prototype._reset = function () {
             this.x = 0;
         };
         // move the object to some new location
-        Level1.prototype._move = function () {
+        Level3.prototype._move = function () {
             this.x -= this._dx;
         };
         // check to see if some boundary has been passed
-        Level1.prototype._checkBounds = function () {
+        Level3.prototype._checkBounds = function () {
             if (this.x <= -1727.5) {
                 this._reset();
             }
         };
         // public methods
         // Initializes variables and creates new objects
-        Level1.prototype.Start = function () {
+        Level3.prototype.Start = function () {
             this._dx = 2; //speed
             this._reset();
         };
         // updates the game object every frame
-        Level1.prototype.Update = function () {
+        Level3.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        return Level1;
+        return Level3;
     }(createjs.Bitmap));
-    objects.Level1 = Level1;
+    objects.Level3 = Level3;
 })(objects || (objects = {}));
-//# sourceMappingURL=level1.js.map
+//# sourceMappingURL=level3.js.map

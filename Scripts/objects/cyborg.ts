@@ -10,7 +10,7 @@ module objects {
 
 
     get Lives():number {
-      return this.x;
+    return this.x;
     
     }
  

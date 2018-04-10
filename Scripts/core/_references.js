@@ -5,6 +5,7 @@
 /// <reference path="../../Scripts/objects/gameobject.ts"/>
 /// <reference path="../../Scripts/objects/level1.ts"/>
 /// <reference path="../../Scripts/objects/level2.ts"/>
+/// <reference path="../../Scripts/objects/level3.ts"/>
 /// <reference path="../../Scripts/objects/ninja.ts"/>
 /// <reference path="../../Scripts/objects/bullet.ts"/>
 /// <reference path="../../Scripts/objects/cyborg.ts"/>

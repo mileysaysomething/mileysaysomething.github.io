@@ -17,6 +17,17 @@ var managers;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(ScoreBoard.prototype, "Time", {
+            get: function () {
+                return this._time;
+            },
+            set: function (newTime) {
+                this._time = newTime;
+                this.TimeLabel.text = "Time: " + this._time;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(ScoreBoard.prototype, "Score", {
             get: function () {
                 return this._score;
@@ -43,10 +54,20 @@ var managers;
         ScoreBoard.prototype._initialize = function () {
             this.LivesLabel = new objects.Label("Lives: 0", "30px", "Consolas", "#000000", 50, 10, false);
             this.ScoreLabel = new objects.Label("Score: 99999", "30px", "Consolas", "#000000", 500, 10, false);
+            this.TimeLabel = new objects.Label("Time: 99999", "30px", "Consolas", "#000000", 900, 10, false);
             this.HighScoreLabel = new objects.Label("High Score: 99999", "50px", "Consolas", "#000000", 320, 240, true);
-            this.Lives = 5;
-            this.Score = 0;
-            this.HighScore = 0;
+            if (objects.Game.currentScene == 1) {
+                this.Time = 0;
+                this.Lives = 5;
+                this.Score = 0;
+                this.HighScore = 0;
+            }
+            else if (objects.Game.currentScene == 2) {
+                this.Time = managers.Collision.CurrenTime;
+                this.Lives = managers.Collision.CurrentLive;
+                this.Score = managers.Collision.CurrentScore;
+                this.HighScore = managers.Collision.CurrentHighScore;
+            }
         };
         return ScoreBoard;
     }());

@@ -1,9 +1,7 @@
 module objects {
     export class Label extends createjs.Text {
         // Private Instance Variables
-
         // Public Propoerties
-
         // Constructor
         constructor(
             labelString: string,
@@ -25,7 +23,6 @@ module objects {
         }
 
         // Private Methods
-
         // Public Methods
     }
-}
+}   

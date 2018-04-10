@@ -4,11 +4,15 @@ module managers {
     // private instance variables
     private _lives:number;
     private _score:number;
+    private _time:number;
+
     private _highScore:number;
 
     // public Instance variables
     public LivesLabel: objects.Label;
     public ScoreLabel: objects.Label;
+    public TimeLabel: objects.Label;
+
     public HighScoreLabel: objects.Label;
 
     // public properties
@@ -20,6 +24,16 @@ module managers {
       this._lives = newLives;
       this.LivesLabel.text = "Lives: " + this._lives;
     }
+
+    get Time():number {
+      return this._time;
+    }
+
+    set Time(newTime:number) {
+      this._time = newTime;
+      this.TimeLabel.text = "Time: " + this._time;
+    }
+
 
     get Score():number {
       return this._score;
@@ -48,11 +62,24 @@ module managers {
     private _initialize():void {
       this.LivesLabel = new objects.Label("Lives: 0", "30px", "Consolas", "#000000", 50, 10, false);
       this.ScoreLabel = new objects.Label("Score: 99999", "30px", "Consolas", "#000000", 500, 10, false);
-      this.HighScoreLabel = new objects.Label("High Score: 99999", "50px", "Consolas", "#000000", 320, 240, true);
+      this.TimeLabel = new objects.Label("Time: 99999", "30px", "Consolas", "#000000", 900, 10, false);
 
+      this.HighScoreLabel = new objects.Label("High Score: 99999", "50px", "Consolas", "#000000", 320, 240, true);
+     
+     if (objects.Game.currentScene == 1){
+        this.Time = 0;
       this.Lives = 5;
       this.Score = 0;
       this.HighScore = 0;
+     }
+     else if(objects.Game.currentScene == 2){
+      this.Time = Collision.CurrenTime;
+      this.Lives = Collision.CurrentLive;
+      this.Score = Collision.CurrentScore;  
+      this.HighScore = Collision.CurrentHighScore;
+
+    }
+     
     }
 
     // public methods
