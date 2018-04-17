@@ -11,6 +11,26 @@
     var currentScene;
     var currentState;
     var keyboardManager;
+    /*
+    textureAtlasData = {
+  
+      "images": [
+        ""
+        //"./Assets/sprites/textureAtlas.png"
+      ],
+  
+     
+  
+    "animations": {
+  
+      "coin": {
+        "frames": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "speed": 0.33
+      }
+  }
+  
+    };
+  */
     assetManifest = [
         { id: "clickMeButton", src: "./Assets/images/clickMeButton.png" },
         { id: "startButton", src: "./Assets/images/startBtn.png" },
@@ -28,7 +48,9 @@
         { id: "unmuteBtn", src: "./Assets/images/unmuteBtn.png" },
         { id: "coverImg", src: "./Assets/images/cover2.png" },
         { id: "sparkle", src: "./Assets/images/sparkle.gif" },
-        { id: "ghost", src: "./Assets/images/ghost.png" }
+        { id: "ghost", src: "./Assets/images/ghost.png" },
+        { id: "sushi", src: "./Assets/images/sushi.png" },
+        { id: "powerUp", src: "./Assets/audio/sushi.wav" }
     ];
     // preloads assets
     function Init() {

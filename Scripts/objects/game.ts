@@ -7,6 +7,7 @@ module objects {
     public static bullet: objects.Bullet;
     public static cyborg: objects.Cyborg;
     public static ninja: objects.Ninja;
+    public static sushi: objects.Sushi;
 
     public static store:number; 
 

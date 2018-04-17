@@ -9,6 +9,7 @@
 /// <reference path="../../Scripts/objects/ninja.ts"/>
 /// <reference path="../../Scripts/objects/ninjaNew.ts"/>
 /// <reference path="../../Scripts/objects/bullet.ts"/>
+/// <reference path="../../Scripts/objects/sushi.ts"/>
 /// <reference path="../../Scripts/objects/cyborg.ts"/>
 /// <reference path="../../Scripts/scenes/over.ts"/>
 /// <reference path="../../Scripts/scenes/play2.ts"/>

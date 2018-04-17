@@ -19,6 +19,14 @@ var managers;
                 if (!object2.isColliding) {
                     object2.isColliding = true;
                     switch (object2.name) {
+                        case "sushi":
+                            if ((object2.alpha != 0) && (object1.alpha != 0)) {
+                                createjs.Sound.play("powerUp");
+                                // add a life power up
+                                objects.Game.scoreBoard.Lives += 1;
+                                object2.alpha = 0;
+                            }
+                            break;
                         case "cyborg":
                             if (objects.Game.HighScore <= objects.Game.scoreBoard.Score) {
                                 objects.Game.scoreBoard.HighScore = objects.Game.scoreBoard.Score;

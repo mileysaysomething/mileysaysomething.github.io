@@ -60,11 +60,11 @@ module managers {
 
     // private methods
     private _initialize():void {
-      this.LivesLabel = new objects.Label("Lives: 0", "30px", "Consolas", "#000000", 50, 10, false);
-      this.ScoreLabel = new objects.Label("Score: 99999", "30px", "Consolas", "#000000", 500, 10, false);
-      this.TimeLabel = new objects.Label("Time: 99999", "30px", "Consolas", "#000000", 900, 10, false);
+      this.LivesLabel = new objects.Label("Lives: 0", "30px", "Pressstart2p", "#000000", 50, 10, false);
+      this.ScoreLabel = new objects.Label("Score: 99999", "30px", "Pressstart2p", "#000000", 500, 10, false);
+      this.TimeLabel = new objects.Label("Time: 99999", "30px", "Pressstart2p", "#000000", 900, 10, false);
 
-      this.HighScoreLabel = new objects.Label("High Score: 99999", "50px", "Consolas", "#000000", 320, 240, true);
+      this.HighScoreLabel = new objects.Label("High Score: 99999", "50px", "Pressstart2p", "#000000", 320, 240, true);
      
      if (objects.Game.currentScene == 1){
         this.Time = 0;

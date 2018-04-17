@@ -24,6 +24,7 @@ var scenes;
         PlayScene.prototype.Start = function () {
             this._level1 = new objects.Level1(this.assetManager);
             this._level2 = new objects.Level2(this.assetManager);
+            this._sushi = new objects.Sushi(this.assetManager);
             this._ninja = new objects.Ninja(this.assetManager);
             this._bullet = new objects.Bullet(this.assetManager);
             this._special = new objects.Button(this.assetManager, "ghost", 1300, 420);
@@ -69,10 +70,13 @@ var scenes;
             var _this = this;
             this._level1.Update();
             this._level2.Update();
+            this._sushi.Update();
             this._ninja.Update();
             this._bullet.Update();
             this._bullet.x++;
             this._specialTimer++;
+            // check collision between ninja and sushi
+            managers.Collision.Check(this._ninja, this._sushi);
             if (this._bullet.x > 1000) {
                 this._bullet.x = this._ninja.x;
                 this._bullet.y = this._ninja.y;
@@ -136,6 +140,8 @@ var scenes;
                 PlayScene.soundOn == true;
                 this._unmuteBtnClick();
             }
+            // add the sushi to the scene
+            this.addChild(this._sushi);
         };
         PlayScene.soundOn = true;
         return PlayScene;

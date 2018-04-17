@@ -111,22 +111,27 @@ module objects {
       // right boundary
       if (this.x >= 1350 - this.halfWidth) {
         this.x = 1350 - this.halfWidth;
+
       }
 
       // left boundary
       if (this.x <= 150 - this.halfWidth) {
         this.x = 150 - this.halfWidth;
+
       }
       //down boundary
       if (this.y >= 510 - this.halfWidth) {
         // console.log(this.y);
         this.y = 510 - this.halfWidth;
+
       }
 
       if (this.y <= 105 - this.halfWidth) {
         // console.log(this.y);
         this.y = 105 - this.halfWidth;
+
       }
+     
 
     }
   }

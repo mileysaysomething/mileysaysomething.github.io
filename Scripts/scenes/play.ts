@@ -4,6 +4,8 @@ module scenes {
     private _level1: objects.Level1;
     private _level2: objects.Level2;
 
+    private _sushi: objects.Sushi;
+
     private _bullet: objects.Bullet;
     private _ninja: objects.Ninja;
     private _cyborg: objects.Cyborg[];
@@ -39,7 +41,7 @@ module scenes {
       this._level1 = new objects.Level1(this.assetManager);
       this._level2 = new objects.Level2(this.assetManager);
 
-    
+      this._sushi = new objects.Sushi(this.assetManager);
 
       this._ninja = new objects.Ninja(this.assetManager);
       this._bullet = new objects.Bullet(this.assetManager);
@@ -114,13 +116,16 @@ module scenes {
       this._level1.Update();
       this._level2.Update();
 
+      this._sushi.Update();
+
       this._ninja.Update();
       this._bullet.Update();
     
       this._bullet.x++;
       this._specialTimer++;
 
-    
+      // check collision between ninja and sushi
+      managers.Collision.Check(this._ninja, this._sushi);
       
       if (this._bullet.x > 1000 ){
         
@@ -177,6 +182,8 @@ module scenes {
     // This is where the fun happens
     public Main(): void {
 
+      
+
       // add the level1 to the scene
       this.addChild(this._level1);
 
@@ -211,8 +218,10 @@ module scenes {
       else {
         PlayScene.soundOn == true;
         this._unmuteBtnClick();
-      }
+      } 
 
+      // add the sushi to the scene
+      this.addChild(this._sushi);
       
     }
   }
