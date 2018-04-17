@@ -5,6 +5,8 @@
 
   // Game Variables
   let canvas = document.getElementById("canvas");
+  let canvas2 = document.getElementById("canvas2");
+
   let stage:createjs.Stage;
   let helloLabel: objects.Label;
   let clickMeButton: objects.Button;
@@ -38,6 +40,7 @@
     {id: "startButton", src:"./Assets/images/startBtn.png"},
     {id: "nextButton", src:"./Assets/images/nextButton.png"},
     {id: "backButton", src:"./Assets/images/backBtn.png"},
+    {id: "instructionBtn", src:"./Assets/images/InstructionBtn.png"},
     {id: "level1", src:"./Assets/images/fujiNew.png"},
     {id: "level2", src:"./Assets/images/BambooNew.png"},
     {id: "level3", src:"./Assets/images/lvl3BG.png"},
@@ -53,6 +56,7 @@
     {id: "ghost", src:"./Assets/images/ghost.png"},
     {id: "sushi", src:"./Assets/images/sushi.png"},
     {id: "powerUp", src:"./Assets/audio/sushi.wav"}
+
   ];
 
   // preloads assets
@@ -76,6 +80,8 @@
     objects.Game.currentScene = config.Scene.START;
     currentState = config.Scene.START;
    
+    //stage2 = new createjs.Stage(canvas2);
+
     keyboardManager = new managers.Keyboard();
     objects.Game.keyboardManager = keyboardManager;
     

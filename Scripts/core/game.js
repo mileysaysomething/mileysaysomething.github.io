@@ -3,6 +3,7 @@
 (function () {
     // Game Variables
     var canvas = document.getElementById("canvas");
+    var canvas2 = document.getElementById("canvas2");
     var stage;
     var helloLabel;
     var clickMeButton;
@@ -36,6 +37,7 @@
         { id: "startButton", src: "./Assets/images/startBtn.png" },
         { id: "nextButton", src: "./Assets/images/nextButton.png" },
         { id: "backButton", src: "./Assets/images/backBtn.png" },
+        { id: "instructionBtn", src: "./Assets/images/InstructionBtn.png" },
         { id: "level1", src: "./Assets/images/fujiNew.png" },
         { id: "level2", src: "./Assets/images/BambooNew.png" },
         { id: "level3", src: "./Assets/images/lvl3BG.png" },
@@ -69,6 +71,7 @@
         objects.Game.stage = stage;
         objects.Game.currentScene = config.Scene.START;
         currentState = config.Scene.START;
+        //stage2 = new createjs.Stage(canvas2);
         keyboardManager = new managers.Keyboard();
         objects.Game.keyboardManager = keyboardManager;
         Main();

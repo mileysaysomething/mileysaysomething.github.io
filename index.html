@@ -13,9 +13,18 @@
 <body>
   <canvas id="canvas" width="1350" height="480" style="background-color:#000000" ></canvas>
   <!-- <img id="coverImg"  height="480" src="./Assets/images/cover.png" alt="cover">-->
-
+   <!-- <canvas id="canvas2" width="1350" height="70" style="background-color:#73afc7" ></canvas> -->
+  <img id = "instruction" src="../Assets/images/Instruction.png">
   <!-- JavaScript Section -->
-  
+  <script>
+    window.onload = function() {
+    var c=document.getElementById("canvas2");
+    var ctx=c.getContext("2d");
+    var img=document.getElementById("scream");
+    ctx.drawImage(img,10,10);
+};
+
+  </script>
   <!-- CreateJS Libraries -->
   <script src="./node_modules/easeljs/lib/easeljs.min.js"></script>
   <script src="./node_modules/tweenjs/lib/tweenjs.min.js"></script>

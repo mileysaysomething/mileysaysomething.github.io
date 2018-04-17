@@ -22,12 +22,16 @@ var scenes;
         StartScene.prototype._startButtonClick = function () {
             objects.Game.currentScene = config.Scene.PLAY;
         };
+        StartScene.prototype._instructionBtnClick = function () {
+            objects.Game.currentScene = config.Scene.PLAY;
+        };
         // Public Methods
         // Initialize Game Variables and objects
         StartScene.prototype.Start = function () {
             this._coverImg = new createjs.Bitmap("./Assets/images/cover2.png");
             this._welcomeLabel = new objects.Label("Cyborg War", "60px", "Pressstart2p", "#ffffff", 530, 100, true);
             this._startButton = new objects.Button(this.assetManager, "startButton", 675, 340);
+            this._instructionBtn = new objects.Button(this.assetManager, "instructionBtn", 675, 420);
             // this._sparkle = new createjs.Bitmap("./Assets/images/sparkle.gif");
             this.Main();
         };
@@ -44,6 +48,9 @@ var scenes;
             // add the startButton to the scene
             this.addChild(this._startButton);
             this._startButton.on("click", this._startButtonClick);
+            // add the instructionButton to the scene
+            this.addChild(this._instructionBtn);
+            this._instructionBtn.on("click", this._instructionBtnClick);
         };
         return StartScene;
     }(objects.Scene));
