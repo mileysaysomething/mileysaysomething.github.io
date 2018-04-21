@@ -1,3 +1,4 @@
+
 module scenes {
   export class PlayScene2 extends objects.Scene {
     // Private Instance Variables
@@ -59,13 +60,13 @@ module scenes {
 
       // instantiate the cyborg array
       this._cyborg = new Array<objects.Cyborg>();
-      this._cyborgNum = 12;
+      this._cyborgNum = 10;
       // loop and add each cyborg to the array
       for (let count = 0; count < this._cyborgNum; count++) {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
       }
 
-      for (let count = 0; count < this._cyborgNum; count++) 
+      for (let count = 0; count < this._cyborgNum +5; count++) 
       {
       this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
       }
@@ -154,11 +155,11 @@ module scenes {
              cyborg.x = 1300
               
             }
-
+          });
              //Manages Collisions for the cyborgbullets
 
     this._cyborgbullet.forEach(_cyborgbullet => {
-      this.removeChild();
+      
 
       _cyborgbullet.Update();
       managers.Collision.Check(this._ninja, _cyborgbullet);
@@ -170,7 +171,7 @@ module scenes {
        }
      });
         
-      });
+     
 
 
 
@@ -217,7 +218,6 @@ module scenes {
       });
 
       this._cyborgbullet.forEach(_cyborgbullet => {
-        this.removeChild()
 
         this.addChild(_cyborgbullet);
 

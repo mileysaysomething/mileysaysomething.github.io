@@ -25,7 +25,8 @@ var scenes;
         // Initialize Game Variables and objects
         PlayScene3.prototype.Start = function () {
             this._level3 = new objects.Level3(this.assetManager);
-            this._ninja = new objects.NinjaNew(this.assetManager);
+            this._ninja = new objects.Ninja(this.assetManager);
+            this._sushi = new objects.Sushi(this.assetManager);
             this._bullet = new objects.Bullet(this.assetManager);
             this._special = new objects.Button(this.assetManager, "ghost", 1300, 420);
             this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
@@ -34,13 +35,13 @@ var scenes;
             console.log(scenes.PlayScene.soundOn);
             // instantiate the cyborg array
             this._cyborg = new Array();
-            this._cyborgNum = 30;
+            this._cyborgNum = 0;
             // loop and add each cyborg to the array
             for (var count = 0; count < this._cyborgNum + 10; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
             //this. _cyborgBulletNum = 1;
-            for (var count = 0; count < this._cyborgBulletNum + 5; count++) {
+            for (var count = 0; count < this._cyborgNum + 5; count++) {
                 this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
             }
             this._ninjaBGMSound = createjs.Sound.play("engine");
@@ -66,7 +67,15 @@ var scenes;
             this._ninja.Update();
             this._bullet.Update();
             this._bullet.x++;
+            // this._specialTimer++;
+            this._sushi.Update();
             this._specialTimer++;
+            managers.Collision.Check(this._ninja, this._sushi);
+            if (objects.Game.keyboardManager.escape) {
+                console.log("clicked");
+                scenes.PlayScene.count += 1;
+                this._muteBtnClick();
+            }
             if (objects.Game.keyboardManager.escape) {
                 console.log("clicked");
                 scenes.PlayScene.count += 1;
@@ -108,7 +117,7 @@ var scenes;
                 this._muteBtnClick();
                 objects.Game.currentScene = config.Scene.OVER;
             }
-            if (this._scoreBoard.Lives >= 5000) {
+            if (this._scoreBoard.Score >= 5000) {
                 this._muteBtnClick();
                 objects.Game.currentScene = config.Scene.WIN;
             }
@@ -140,6 +149,7 @@ var scenes;
             this.addChild(this._unmuteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
             this.addChild(this._special);
+            this.addChild(this._sushi);
         };
         return PlayScene3;
     }(objects.Scene));

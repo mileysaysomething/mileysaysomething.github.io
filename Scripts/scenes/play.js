@@ -139,7 +139,6 @@ var scenes;
             });
             this._cyborgbullet.forEach(function (_cyborgbullet) {
                 _this.addChild(_cyborgbullet);
-                _this.removeChild();
             });
             // add scoreboard labels to the scene
             this.addChild(this._scoreBoard.LivesLabel);

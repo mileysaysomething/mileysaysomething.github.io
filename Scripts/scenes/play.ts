@@ -206,6 +206,8 @@ module scenes {
         this.removeChild()
          objects.Game.currentScene = config.Scene.PLAY2;
          objects.Game.store = this._scoreBoard.Score;
+        
+
       }
 
 
@@ -231,7 +233,6 @@ module scenes {
 
       this._cyborgbullet.forEach(_cyborgbullet => {
         this.addChild(_cyborgbullet);
-        this.removeChild();
 
 
       });

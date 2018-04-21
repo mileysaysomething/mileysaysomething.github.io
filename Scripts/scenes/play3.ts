@@ -4,13 +4,12 @@ module scenes {
     private _level3: objects.Level3;
 
     private _bullet: objects.Bullet;
-    private _ninja: objects.NinjaNew;
+    private _ninja: objects.Ninja;
     private _cyborg: objects.Cyborg[];
     private _cyborgNum: number;
-    private _cyborgBulletNum: number;
 
     private _scoreBoard: managers.ScoreBoard;
-
+    private _sushi: objects.Sushi;
 
     private _special: objects.Button;
     private _specialTimer:number = 0;
@@ -41,7 +40,8 @@ module scenes {
     public Start(): void {
       this._level3 = new objects.Level3(this.assetManager);
 
-      this._ninja = new objects.NinjaNew(this.assetManager);
+      this._ninja = new objects.Ninja(this.assetManager);
+      this._sushi = new objects.Sushi(this.assetManager);
      this._bullet = new objects.Bullet(this.assetManager);
 
      this._special = new objects.Button(this.assetManager,"ghost", 1300, 420);
@@ -57,13 +57,13 @@ module scenes {
 
       // instantiate the cyborg array
       this._cyborg = new Array<objects.Cyborg>();
-      this._cyborgNum = 30;
+      this._cyborgNum =0;
       // loop and add each cyborg to the array
       for (let count = 0; count < this._cyborgNum+10; count++) {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
       }
      //this. _cyborgBulletNum = 1;
-     for (let count = 0; count < this._cyborgBulletNum + 5; count++) {
+     for (let count = 0; count < this._cyborgNum + 5; count++) {
       this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
     }
 
@@ -98,7 +98,17 @@ module scenes {
       this._ninja.Update();
       this._bullet.Update();
       this._bullet.x++;
+     // this._specialTimer++;
+      this._sushi.Update();
+
       this._specialTimer++;
+      managers.Collision.Check(this._ninja, this._sushi);
+      if (objects.Game.keyboardManager.escape){
+        console.log("clicked");
+        PlayScene.count += 1;  
+        this._muteBtnClick();
+       
+       }
 
       if (objects.Game.keyboardManager.escape){
         console.log("clicked");
@@ -163,7 +173,7 @@ module scenes {
         this._muteBtnClick(); 
         objects.Game.currentScene = config.Scene.OVER;
       }
-      if(this._scoreBoard.Lives >= 5000) {
+      if(this._scoreBoard.Score >= 5000) {
         this._muteBtnClick(); 
         objects.Game.currentScene = config.Scene.WIN;
       }
@@ -212,7 +222,7 @@ module scenes {
   this.addChild(this._special);
 
    
-
+  this.addChild(this._sushi);
 
     }
   }
