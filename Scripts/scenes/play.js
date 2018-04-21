@@ -22,11 +22,12 @@ var scenes;
         // Public Methods
         // Initialize Game Variables and objects
         PlayScene.prototype.Start = function () {
+            this._cyborgbullet = new Array();
             this._level1 = new objects.Level1(this.assetManager);
             this._level2 = new objects.Level2(this.assetManager);
-            this._sushi = new objects.Sushi(this.assetManager);
             this._ninja = new objects.Ninja(this.assetManager);
             this._bullet = new objects.Bullet(this.assetManager);
+            this._sushi = new objects.Sushi(this.assetManager);
             this._special = new objects.Button(this.assetManager, "ghost", 1300, 420);
             this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
             this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
@@ -36,6 +37,10 @@ var scenes;
             // loop and add each cyborg to the array
             for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
+            }
+            for (var count = 0; count < this._cyborgNum /*cyborgNum should increase for each level,
+              Play2.ts will be this._cyborgNum +5, and Play3.ts will be this._cyborgNum +15*/; count++) {
+                this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
             }
             //loop sound of ninja
             this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
@@ -60,9 +65,6 @@ var scenes;
             console.log(PlayScene.soundOn);
         };
         PlayScene.prototype.changescene = function () {
-            if (this._scoreBoard.Score > 4000) {
-                objects.Game.currentScene = config.Scene.START;
-            }
         };
         //this._ninjaBGMSound.volume = 0.0;
         //this._ninjaBGMSound.stop();
@@ -70,13 +72,20 @@ var scenes;
             var _this = this;
             this._level1.Update();
             this._level2.Update();
-            this._sushi.Update();
             this._ninja.Update();
             this._bullet.Update();
             this._bullet.x++;
             this._specialTimer++;
-            // check collision between ninja and sushi
+            this._sushi.Update();
             managers.Collision.Check(this._ninja, this._sushi);
+            if (objects.Game.keyboardManager.escape) {
+                console.log("clicked");
+                PlayScene.count += 1;
+                this._muteBtnClick();
+            }
+            else if (objects.Game.keyboardManager.shift) {
+                this._unmuteBtnClick();
+            }
             if (this._bullet.x > 1000) {
                 this._bullet.x = this._ninja.x;
                 this._bullet.y = this._ninja.y;
@@ -92,6 +101,14 @@ var scenes;
                 else if (objects.Game.keyboardManager.jump) {
                     createjs.Tween.get(_this._special).to({ alpha: 0.1 }, 9000).to({ alpha: 1 });
                 }
+                //Manages Collisions for the cyborgbullets
+                _this._cyborgbullet.forEach(function (_cyborgbullet) {
+                    _cyborgbullet.Update();
+                    managers.Collision.Check(_this._ninja, _cyborgbullet);
+                    if (_cyborgbullet.x < 0) {
+                        _cyborgbullet.Reset();
+                    }
+                });
                 managers.Collision.Check(cyborg, _this._bullet);
                 if (cyborg.x < 0) {
                     cyborg.x = 1300;
@@ -132,18 +149,16 @@ var scenes;
             // add the unmuteBtn to the scene
             this.addChild(this._unmuteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
-            this.addChild(this._special);
-            if (PlayScene.soundOn == false) {
-                this._muteBtnClick();
-            }
-            else {
-                PlayScene.soundOn == true;
-                this._unmuteBtnClick();
-            }
-            // add the sushi to the scene
+            //add sushi
             this.addChild(this._sushi);
+            this.addChild(this._special);
+            //Add child for cyborgbullet
+            this._cyborgbullet.forEach(function (_cyborgbullet) {
+                _this.addChild(_cyborgbullet);
+            });
         };
         PlayScene.soundOn = true;
+        PlayScene.count = 0;
         return PlayScene;
     }(objects.Scene));
     scenes.PlayScene = PlayScene;

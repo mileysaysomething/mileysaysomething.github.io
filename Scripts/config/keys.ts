@@ -14,5 +14,10 @@ module config {
 
     // space bar
     public static SPACE: number = 32;
+  
+    //escape
+    public static ESCAPE: number = 27;
+    // shift
+    public static SHIFT: number = 16;
   }
 }

@@ -8,6 +8,7 @@ module objects {
     public static cyborg: objects.Cyborg;
     public static ninja: objects.Ninja;
     public static sushi: objects.Sushi;
+    public static cyborgbullet: objects.cyborgbullet;
 
     public static store:number; 
 

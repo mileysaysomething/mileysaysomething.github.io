@@ -30,12 +30,13 @@ var scenes;
             this._special = new objects.Button(this.assetManager, "ghost", 1300, 420);
             this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
             this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
+            this._cyborgbullet = new Array();
             console.log(scenes.PlayScene.soundOn);
             // instantiate the cyborg array
             this._cyborg = new Array();
             this._cyborgNum = 30;
             // loop and add each cyborg to the array
-            for (var count = 0; count < this._cyborgNum; count++) {
+            for (var count = 0; count < this._cyborgNum + 15; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
             this._ninjaBGMSound = createjs.Sound.play("engine");
@@ -62,10 +63,26 @@ var scenes;
             this._bullet.Update();
             this._bullet.x++;
             this._specialTimer++;
+            if (objects.Game.keyboardManager.escape) {
+                console.log("clicked");
+                scenes.PlayScene.count += 1;
+                this._muteBtnClick();
+            }
+            else if (objects.Game.keyboardManager.shift) {
+                this._unmuteBtnClick();
+            }
             if (this._bullet.x > 1000) {
                 this._bullet.x = this._ninja.x;
                 this._bullet.y = this._ninja.y;
             }
+            //Manages Collisions for the cyborgbullets
+            this._cyborgbullet.forEach(function (_cyborgbullet) {
+                _cyborgbullet.Update();
+                managers.Collision.Check(_this._ninja, _cyborgbullet);
+                if (_cyborgbullet.x < 0) {
+                    _cyborgbullet.Reset();
+                }
+            });
             // check collision between plane and island
             //  managers.Collision.Check(this.plane, this.island);
             this._cyborg.forEach(function (cyborg) {
@@ -93,7 +110,7 @@ var scenes;
             var _this = this;
             // add the ocean to the scene
             this.addChild(this._level3);
-            // add the bullet to the scene
+            // add the bullet to the scene  
             this.addChild(this._bullet);
             // add the ninja to the scene
             this.addChild(this._ninja);
@@ -112,13 +129,10 @@ var scenes;
             this.addChild(this._unmuteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
             this.addChild(this._special);
-            if (scenes.PlayScene.soundOn == false) {
-                this._muteBtnClick();
-            }
-            else {
-                scenes.PlayScene.soundOn == true;
-                this._unmuteBtnClick();
-            }
+            //Add child for cyborgbullet
+            this._cyborgbullet.forEach(function (_cyborgbullet) {
+                _this.addChild(_cyborgbullet);
+            });
         };
         return PlayScene3;
     }(objects.Scene));

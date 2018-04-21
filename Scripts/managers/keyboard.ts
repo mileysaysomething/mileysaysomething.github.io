@@ -8,7 +8,9 @@ module managers {
     public moveRight: boolean;
     public jump: boolean;
     public enabled: boolean;
-    public paused: boolean;
+    public shift  : boolean;
+    public escape: boolean;
+
 
     // constructors
     constructor() {
@@ -45,6 +47,14 @@ module managers {
           this.jump = true;
         break;
 
+        case config.Keys.ESCAPE:
+        this.escape = true;
+      break;
+
+      case config.Keys.SHIFT:
+      this.shift = true;
+    break;
+
       }
     }
 
@@ -74,6 +84,12 @@ module managers {
           this.jump = false;
         break;
 
+        case config.Keys.ESCAPE:
+        this.escape = false;
+      break;
+      case config.Keys.SHIFT:
+      this.shift = false;
+    break;
       }
     }
   }

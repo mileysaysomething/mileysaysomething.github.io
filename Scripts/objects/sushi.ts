@@ -13,7 +13,7 @@ module objects {
       // private methods
   
       // public methods
-  
+      
       // Initializes variables and creates new objects
       public Start():void {
         this._dy = 5;
@@ -24,6 +24,8 @@ module objects {
       public Update():void {
         this.Move();
         this.CheckBounds();
+
+        
       }
   
       // reset the objects location to some value
@@ -38,10 +40,12 @@ module objects {
       }
   
       // check to see if some boundary has been passed
-      public CheckBounds():void {
-        if(this.y > (480 + this.height)) {
-          this.alpha = 1;
-        }
+     
+
+        public CheckBounds():void {
+          if(this.y > 600) {
+            this.Reset();
+          }
       }
     }
   }

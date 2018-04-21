@@ -20,11 +20,9 @@ var managers;
                     object2.isColliding = true;
                     switch (object2.name) {
                         case "sushi":
-                            if ((object2.alpha != 0) && (object1.alpha != 0)) {
-                                createjs.Sound.play("powerUp");
-                                // add a life power up
-                                objects.Game.scoreBoard.Lives += 1;
-                                object2.alpha = 0;
+                            if (objects.Game.scoreBoard.Time % 5 == 0 && object2.alpha == 0) {
+                                object2.alpha = 1;
+                                object2.Reset();
                             }
                             break;
                         case "cyborg":
@@ -32,6 +30,13 @@ var managers;
                                 objects.Game.scoreBoard.HighScore = objects.Game.scoreBoard.Score;
                                 objects.Game.HighScore = objects.Game.scoreBoard.HighScore;
                                 objects.Game.scoreBoard.Lives -= 1; //Testing
+                            }
+                            break;
+                        case "cyborgbullet":
+                            if (objects.Game.HighScore <= objects.Game.scoreBoard.Score) {
+                                objects.Game.scoreBoard.HighScore = objects.Game.scoreBoard.Score;
+                                objects.Game.HighScore = objects.Game.scoreBoard.HighScore;
+                                objects.Game.scoreBoard.Lives -= 1;
                             }
                             break;
                         case "bullet":

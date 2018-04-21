@@ -30,6 +30,12 @@ var managers;
                 case config.Keys.SPACE:
                     this.jump = true;
                     break;
+                case config.Keys.ESCAPE:
+                    this.escape = true;
+                    break;
+                case config.Keys.SHIFT:
+                    this.shift = true;
+                    break;
             }
         };
         Keyboard.prototype.onKeyUp = function (event) {
@@ -52,6 +58,12 @@ var managers;
                     break;
                 case config.Keys.SPACE:
                     this.jump = false;
+                    break;
+                case config.Keys.ESCAPE:
+                    this.escape = false;
+                    break;
+                case config.Keys.SHIFT:
+                    this.shift = false;
                     break;
             }
         };

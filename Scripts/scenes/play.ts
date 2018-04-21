@@ -4,14 +4,15 @@ module scenes {
     private _level1: objects.Level1;
     private _level2: objects.Level2;
 
-    private _sushi: objects.Sushi;
-
     private _bullet: objects.Bullet;
     private _ninja: objects.Ninja;
     private _cyborg: objects.Cyborg[];
     private _cyborgNum: number;
     private _scoreBoard: managers.ScoreBoard;
+    private _sushi: objects.Sushi;
+
     public static soundOn:boolean = true;
+    public static count:number = 0;
 
     private _special: objects.Button;
   
@@ -21,6 +22,8 @@ module scenes {
     private _specialTimer:number = 0;
 
     public _ninjaBGMSound: createjs.AbstractSoundInstance;
+
+    private _cyborgbullet: objects.cyborgbullet[];
     
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
@@ -31,27 +34,28 @@ module scenes {
    
    
     // Public Methods
-
     // Initialize Game Variables and objects
     public Start(): void {
      
-    
+      this._cyborgbullet = new Array<objects.cyborgbullet>();
    
             
       this._level1 = new objects.Level1(this.assetManager);
       this._level2 = new objects.Level2(this.assetManager);
 
-      this._sushi = new objects.Sushi(this.assetManager);
+    
 
       this._ninja = new objects.Ninja(this.assetManager);
       this._bullet = new objects.Bullet(this.assetManager);
-      
+      this._sushi = new objects.Sushi(this.assetManager);
+
       this._special = new objects.Button(this.assetManager,"ghost", 1300, 420);
 
         this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 1300, 80);
         this._unmuteBtn = new objects.Button(this.assetManager,"unmuteBtn", 1300, 30);
 
 
+        
       // instantiate the cyborg array
       this._cyborg = new Array<objects.Cyborg>();
       this._cyborgNum = 10;
@@ -60,7 +64,15 @@ module scenes {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
       }
 
+      for (let count = 0; count < this._cyborgNum /*cyborgNum should increase for each level, 
+        Play2.ts will be this._cyborgNum +5, and Play3.ts will be this._cyborgNum +15*/; count++) 
+        {
+        this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
+        }
 
+
+          
+ 
       //loop sound of ninja
       this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
             this._ninjaBGMSound.loop = -1; // play forever
@@ -100,11 +112,7 @@ module scenes {
     }
     
     private changescene():void{
-      if(this._scoreBoard.Score > 4000) {  
-
-        objects.Game.currentScene = config.Scene.START;
-
-      } 
+ 
       
     }
       //this._ninjaBGMSound.volume = 0.0;
@@ -113,10 +121,10 @@ module scenes {
 
 
     public Update(): void {
+
+      
       this._level1.Update();
       this._level2.Update();
-
-      this._sushi.Update();
 
       this._ninja.Update();
       this._bullet.Update();
@@ -124,8 +132,21 @@ module scenes {
       this._bullet.x++;
       this._specialTimer++;
 
-      // check collision between ninja and sushi
-      managers.Collision.Check(this._ninja, this._sushi);
+      this._sushi.Update();
+
+      managers.Collision.Check(this._ninja, this._sushi)
+      if (objects.Game.keyboardManager.escape){
+        console.log("clicked");
+        PlayScene.count += 1;  
+        this._muteBtnClick();
+       
+       }
+
+       else if (objects.Game.keyboardManager.shift){
+         this._unmuteBtnClick();
+       }
+           
+       
       
       if (this._bullet.x > 1000 ){
         
@@ -148,7 +169,18 @@ module scenes {
 
       }
       
+    //Manages Collisions for the cyborgbullets
 
+    this._cyborgbullet.forEach(_cyborgbullet => {
+     _cyborgbullet.Update();
+     managers.Collision.Check(this._ninja, _cyborgbullet);
+ 
+       
+    if(_cyborgbullet.x < 0 )
+      {
+      _cyborgbullet.Reset();
+      }
+    });
         
      managers.Collision.Check(cyborg ,this._bullet );
           if (cyborg.x < 0){
@@ -167,7 +199,7 @@ module scenes {
 
      
 
-      if(this._scoreBoard.Score >= 100) {
+      if(this._scoreBoard.Score >= 100  ) {
         
         this._ninjaBGMSound.stop();
         this.removeChild()
@@ -181,8 +213,6 @@ module scenes {
 
     // This is where the fun happens
     public Main(): void {
-
-      
 
       // add the level1 to the scene
       this.addChild(this._level1);
@@ -210,18 +240,15 @@ module scenes {
       // add the unmuteBtn to the scene
       this.addChild(this._unmuteBtn);  this._muteBtn.on("click", this._muteBtnClick);
 
-    this.addChild(this._special);
-     if (PlayScene.soundOn == false){
-      this._muteBtnClick();
-     }
-
-      else {
-        PlayScene.soundOn == true;
-        this._unmuteBtnClick();
-      } 
-
-      // add the sushi to the scene
+      //add sushi
       this.addChild(this._sushi);
+
+
+    this.addChild(this._special);
+    
+      //Add child for cyborgbullet
+        this._cyborgbullet.forEach(_cyborgbullet => {
+        this.addChild(_cyborgbullet)});
       
     }
   }

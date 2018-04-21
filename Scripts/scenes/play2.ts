@@ -9,6 +9,7 @@ module scenes {
     private _cyborg: objects.Cyborg[];
     private _cyborgNum: number;
     private _scoreBoard: managers.ScoreBoard;
+    private _sushi: objects.Sushi;
 
 
     private _special: objects.Button;
@@ -17,12 +18,11 @@ module scenes {
     private _muteBtn: objects.Button;
     private _unmuteBtn: objects.Button;
   
-
+    private _cyborgbullet: objects.cyborgbullet[];
     
     public _ninjaBGMSound: createjs.AbstractSoundInstance;
 
     // Public Properties
-
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
       super(assetManager);
@@ -33,15 +33,15 @@ module scenes {
     // Private Mathods
 
 
-
     // Public Methods
-
     // Initialize Game Variables and objects
     public Start(): void {
       this._level2 = new objects.Level2(this.assetManager);
       this._level3 = new objects.Level3(this.assetManager);
 
       this._ninja = new objects.Ninja(this.assetManager);
+      this._sushi = new objects.Sushi(this.assetManager);
+
      this._bullet = new objects.Bullet(this.assetManager);
 
      this._special = new objects.Button(this.assetManager,"ghost", 1300, 420);
@@ -49,6 +49,8 @@ module scenes {
      this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 1300, 80);
      this._unmuteBtn = new objects.Button(this.assetManager,"unmuteBtn", 1300, 30);
    
+     this._cyborgbullet = new Array<objects.cyborgbullet>();
+
     console.log(PlayScene.soundOn)
 
 
@@ -57,7 +59,7 @@ module scenes {
       this._cyborg = new Array<objects.Cyborg>();
       this._cyborgNum = 20;
       // loop and add each cyborg to the array
-      for (let count = 0; count < this._cyborgNum; count++) {
+      for (let count = 0; count < this._cyborgNum+5; count++) {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
       }
 
@@ -102,7 +104,20 @@ module scenes {
       this._ninja.Update();
       this._bullet.Update();
       this._bullet.x++;
+      this._sushi.Update();
+
       this._specialTimer++;
+      managers.Collision.Check(this._ninja, this._sushi);
+      if (objects.Game.keyboardManager.escape){
+        console.log("clicked");
+        PlayScene.count += 1;  
+        this._muteBtnClick();
+       
+       }
+
+       else if (objects.Game.keyboardManager.shift){
+         this._unmuteBtnClick();
+       }
 
       if (this._bullet.x > 1500 ){
         
@@ -115,7 +130,6 @@ module scenes {
   
       // check collision between plane and island
     //  managers.Collision.Check(this.plane, this.island);
-
       this._cyborg.forEach(cyborg => {
         cyborg.Update();
         // check collision between plane and current cyborg
@@ -134,7 +148,18 @@ module scenes {
               
             }
 
+             //Manages Collisions for the cyborgbullets
 
+    this._cyborgbullet.forEach(_cyborgbullet => {
+      _cyborgbullet.Update();
+      managers.Collision.Check(this._ninja, _cyborgbullet);
+  
+        
+     if(_cyborgbullet.x < 0 )
+       {
+       _cyborgbullet.Reset();
+       }
+     });
         
       });
 
@@ -178,7 +203,6 @@ module scenes {
 
 
       // add cyborg to the scene
-
       this._cyborg.forEach(cyborg => {
         this.addChild(cyborg);
       });
@@ -197,16 +221,13 @@ module scenes {
 
   this.addChild(this._special);
 
-    if (PlayScene.soundOn == false){
-      this._muteBtnClick();
-     }
+   
+      this.addChild(this._sushi);
 
-      else {
-        PlayScene.soundOn == true;
-        this._unmuteBtnClick();
-      }
-
-
+       //Add child for cyborgbullet
+       this._cyborgbullet.forEach(_cyborgbullet => {
+        this.addChild(_cyborgbullet)});
+      
     }
   }
 }

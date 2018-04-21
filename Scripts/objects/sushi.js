@@ -43,8 +43,8 @@ var objects;
         };
         // check to see if some boundary has been passed
         Sushi.prototype.CheckBounds = function () {
-            if (this.y > (480 + this.height)) {
-                this.alpha = 1;
+            if (this.y > 600) {
+                this.Reset();
             }
         };
         return Sushi;

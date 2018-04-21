@@ -15,6 +15,10 @@ var config;
         Keys.D = 68;
         // space bar
         Keys.SPACE = 32;
+        //escape
+        Keys.ESCAPE = 27;
+        // shift
+        Keys.SHIFT = 16;
         return Keys;
     }());
     config.Keys = Keys;
