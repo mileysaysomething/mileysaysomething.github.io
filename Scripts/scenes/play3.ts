@@ -173,7 +173,7 @@ module scenes {
         this._muteBtnClick(); 
         objects.Game.currentScene = config.Scene.OVER;
       }
-      if(this._scoreBoard.Score >= 5000) {
+      if(this._scoreBoard.Score >= 1500) {
         this._muteBtnClick(); 
         objects.Game.currentScene = config.Scene.WIN;
       }
