@@ -37,7 +37,7 @@ module scenes {
     // Initialize Game Variables and objects
     public Start(): void {
      
-      this._cyborgbullet = new Array<objects.cyborgbullet>();
+      
    
             
       this._level1 = new objects.Level1(this.assetManager);
@@ -46,6 +46,7 @@ module scenes {
     
 
       this._ninja = new objects.Ninja(this.assetManager);
+      this._cyborgbullet = new Array<objects.cyborgbullet>();
       this._bullet = new objects.Bullet(this.assetManager);
       this._sushi = new objects.Sushi(this.assetManager);
 
@@ -64,8 +65,7 @@ module scenes {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
       }
 
-      for (let count = 0; count < this._cyborgNum /*cyborgNum should increase for each level, 
-        Play2.ts will be this._cyborgNum +5, and Play3.ts will be this._cyborgNum +15*/; count++) 
+      for (let count = 0; count < this._cyborgNum; count++) 
         {
         this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
         }
@@ -155,39 +155,40 @@ module scenes {
         
         
       } 
-      
-      // check collision between ninja and island
+ // check collision between ninja and island
     //  managers.Collision.Check(this.ninja, this.island);
-    this._cyborg.forEach(cyborg => {
+    this._cyborg.forEach(cyborg => 
+      {
       cyborg.Update();
       // check collision between ninja and current cyborg
       if (this._ninja.alpha != 0.2 ) { 
-      managers.Collision.Check(this._ninja ,cyborg );
+     // managers.Collision.Check(this._ninja ,cyborg );
       }
       else if (objects.Game.keyboardManager.jump) {
         createjs.Tween.get(this._special).to({alpha:0.1},9000).to({alpha:1});
 
-      }
-      
-    //Manages Collisions for the cyborgbullets
-
-    this._cyborgbullet.forEach(_cyborgbullet => {
-     _cyborgbullet.Update();
-     managers.Collision.Check(this._ninja, _cyborgbullet);
- 
-       
-    if(_cyborgbullet.x < 0 )
-      {
-      _cyborgbullet.Reset();
-      }
-    });
-        
+      }     
      managers.Collision.Check(cyborg ,this._bullet );
           if (cyborg.x < 0){
              cyborg.x = 1300
-              
             }
-      
+
+            
+
+            
+    });
+
+    this._cyborgbullet.forEach(_cyborgbullet => 
+      {
+      _cyborgbullet.Update();
+      managers.Collision.Check(this._ninja , _cyborgbullet);
+
+      if(_cyborgbullet.x < 0 )
+      {
+        _cyborgbullet.Reset();
+      }
+
+
     });
 
 
@@ -228,6 +229,11 @@ module scenes {
         this.addChild(cyborg);
       });
 
+      this._cyborgbullet.forEach(_cyborgbullet => {
+        this.addChild(_cyborgbullet);
+
+      });
+
        // add scoreboard labels to the scene
        this.addChild(this._scoreBoard.LivesLabel);
        this.addChild(this._scoreBoard.ScoreLabel);
@@ -246,9 +252,6 @@ module scenes {
 
     this.addChild(this._special);
     
-      //Add child for cyborgbullet
-        this._cyborgbullet.forEach(_cyborgbullet => {
-        this.addChild(_cyborgbullet)});
       
     }
   }

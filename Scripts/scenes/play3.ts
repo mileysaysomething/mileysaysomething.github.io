@@ -7,6 +7,8 @@ module scenes {
     private _ninja: objects.NinjaNew;
     private _cyborg: objects.Cyborg[];
     private _cyborgNum: number;
+    private _cyborgBulletNum: number;
+
     private _scoreBoard: managers.ScoreBoard;
 
 
@@ -57,9 +59,13 @@ module scenes {
       this._cyborg = new Array<objects.Cyborg>();
       this._cyborgNum = 30;
       // loop and add each cyborg to the array
-      for (let count = 0; count < this._cyborgNum+15; count++) {
+      for (let count = 0; count < this._cyborgNum+10; count++) {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
       }
+     //this. _cyborgBulletNum = 1;
+     for (let count = 0; count < this._cyborgBulletNum + 5; count++) {
+      this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
+    }
 
       this._ninjaBGMSound = createjs.Sound.play("engine");
       this._ninjaBGMSound.loop = -1; // play forever
@@ -182,6 +188,10 @@ module scenes {
       this._cyborg.forEach(cyborg => {
         this.addChild(cyborg);
       });
+      this._cyborgbullet.forEach(_cyborgbullet => {
+        this.addChild(_cyborgbullet);
+
+      });
 
       // add scoreboard labels to the scene
       this.addChild(this._scoreBoard.LivesLabel);
@@ -197,10 +207,7 @@ module scenes {
 
   this.addChild(this._special);
 
-     //Add child for cyborgbullet
-     this._cyborgbullet.forEach(_cyborgbullet => {
-      this.addChild(_cyborgbullet)});
-    
+   
 
 
     }

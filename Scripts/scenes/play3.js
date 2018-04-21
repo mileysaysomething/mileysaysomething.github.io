@@ -36,8 +36,12 @@ var scenes;
             this._cyborg = new Array();
             this._cyborgNum = 30;
             // loop and add each cyborg to the array
-            for (var count = 0; count < this._cyborgNum + 15; count++) {
+            for (var count = 0; count < this._cyborgNum + 10; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
+            }
+            //this. _cyborgBulletNum = 1;
+            for (var count = 0; count < this._cyborgBulletNum + 5; count++) {
+                this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
             }
             this._ninjaBGMSound = createjs.Sound.play("engine");
             this._ninjaBGMSound.loop = -1; // play forever
@@ -118,6 +122,9 @@ var scenes;
             this._cyborg.forEach(function (cyborg) {
                 _this.addChild(cyborg);
             });
+            this._cyborgbullet.forEach(function (_cyborgbullet) {
+                _this.addChild(_cyborgbullet);
+            });
             // add scoreboard labels to the scene
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
@@ -129,10 +136,6 @@ var scenes;
             this.addChild(this._unmuteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
             this.addChild(this._special);
-            //Add child for cyborgbullet
-            this._cyborgbullet.forEach(function (_cyborgbullet) {
-                _this.addChild(_cyborgbullet);
-            });
         };
         return PlayScene3;
     }(objects.Scene));

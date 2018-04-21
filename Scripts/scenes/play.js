@@ -22,10 +22,10 @@ var scenes;
         // Public Methods
         // Initialize Game Variables and objects
         PlayScene.prototype.Start = function () {
-            this._cyborgbullet = new Array();
             this._level1 = new objects.Level1(this.assetManager);
             this._level2 = new objects.Level2(this.assetManager);
             this._ninja = new objects.Ninja(this.assetManager);
+            this._cyborgbullet = new Array();
             this._bullet = new objects.Bullet(this.assetManager);
             this._sushi = new objects.Sushi(this.assetManager);
             this._special = new objects.Button(this.assetManager, "ghost", 1300, 420);
@@ -38,8 +38,7 @@ var scenes;
             for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
-            for (var count = 0; count < this._cyborgNum /*cyborgNum should increase for each level,
-              Play2.ts will be this._cyborgNum +5, and Play3.ts will be this._cyborgNum +15*/; count++) {
+            for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
             }
             //loop sound of ninja
@@ -96,22 +95,21 @@ var scenes;
                 cyborg.Update();
                 // check collision between ninja and current cyborg
                 if (_this._ninja.alpha != 0.2) {
-                    managers.Collision.Check(_this._ninja, cyborg);
+                    // managers.Collision.Check(this._ninja ,cyborg );
                 }
                 else if (objects.Game.keyboardManager.jump) {
                     createjs.Tween.get(_this._special).to({ alpha: 0.1 }, 9000).to({ alpha: 1 });
                 }
-                //Manages Collisions for the cyborgbullets
-                _this._cyborgbullet.forEach(function (_cyborgbullet) {
-                    _cyborgbullet.Update();
-                    managers.Collision.Check(_this._ninja, _cyborgbullet);
-                    if (_cyborgbullet.x < 0) {
-                        _cyborgbullet.Reset();
-                    }
-                });
                 managers.Collision.Check(cyborg, _this._bullet);
                 if (cyborg.x < 0) {
                     cyborg.x = 1300;
+                }
+            });
+            this._cyborgbullet.forEach(function (_cyborgbullet) {
+                _cyborgbullet.Update();
+                managers.Collision.Check(_this._ninja, _cyborgbullet);
+                if (_cyborgbullet.x < 0) {
+                    _cyborgbullet.Reset();
                 }
             });
             // if lives fall below zero switch scenes to the game over scene
@@ -139,6 +137,9 @@ var scenes;
             this._cyborg.forEach(function (cyborg) {
                 _this.addChild(cyborg);
             });
+            this._cyborgbullet.forEach(function (_cyborgbullet) {
+                _this.addChild(_cyborgbullet);
+            });
             // add scoreboard labels to the scene
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
@@ -152,10 +153,6 @@ var scenes;
             //add sushi
             this.addChild(this._sushi);
             this.addChild(this._special);
-            //Add child for cyborgbullet
-            this._cyborgbullet.forEach(function (_cyborgbullet) {
-                _this.addChild(_cyborgbullet);
-            });
         };
         PlayScene.soundOn = true;
         PlayScene.count = 0;

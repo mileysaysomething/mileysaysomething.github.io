@@ -55,7 +55,7 @@
     { id: "sparkle", src: "./Assets/images/sparkle.gif" },
     {id: "ghost", src:"./Assets/images/ghost.png"},
     {id: "sushi", src:"./Assets/images/sushi.png"},
-    {id: "cyborgbullet", src:"./Assets/images/bullet.png"},
+    {id: "cyborgbullet", src:"./Assets/images/cyborgbullet.png"},
     {id: "powerUp", src:"./Assets/audio/sushi.wav"}
 
   ];

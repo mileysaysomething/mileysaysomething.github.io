@@ -11,6 +11,7 @@
 /// <reference path="../../Scripts/objects/bullet.ts"/>
 /// <reference path="../../Scripts/objects/sushi.ts"/>
 /// <reference path="../../Scripts/objects/cyborg.ts"/>
+/// <reference path="../../Scripts/objects/cyborgbullet.ts"/>
 /// <reference path="../../Scripts/scenes/over.ts"/>
 /// <reference path="../../Scripts/scenes/play2.ts"/>
 /// <reference path="../../Scripts/scenes/play.ts"/>

@@ -42,6 +42,8 @@ module scenes {
       this._ninja = new objects.Ninja(this.assetManager);
       this._sushi = new objects.Sushi(this.assetManager);
 
+      this._cyborgbullet = new Array<objects.cyborgbullet>();
+
      this._bullet = new objects.Bullet(this.assetManager);
 
      this._special = new objects.Button(this.assetManager,"ghost", 1300, 420);
@@ -49,7 +51,7 @@ module scenes {
      this._muteBtn = new objects.Button(this.assetManager,"muteBtn", 1300, 80);
      this._unmuteBtn = new objects.Button(this.assetManager,"unmuteBtn", 1300, 30);
    
-     this._cyborgbullet = new Array<objects.cyborgbullet>();
+    
 
     console.log(PlayScene.soundOn)
 
@@ -57,10 +59,15 @@ module scenes {
 
       // instantiate the cyborg array
       this._cyborg = new Array<objects.Cyborg>();
-      this._cyborgNum = 20;
+      this._cyborgNum = 15;
       // loop and add each cyborg to the array
       for (let count = 0; count < this._cyborgNum+5; count++) {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
+      }
+
+      for (let count = 0; count < this._cyborgNum; count++) 
+      {
+      this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
       }
 
       this._ninjaBGMSound = createjs.Sound.play("engine");
@@ -207,6 +214,11 @@ module scenes {
         this.addChild(cyborg);
       });
 
+      this._cyborgbullet.forEach(_cyborgbullet => {
+        this.addChild(_cyborgbullet);
+
+      });
+
       // add scoreboard labels to the scene
       this.addChild(this._scoreBoard.LivesLabel);
       this.addChild(this._scoreBoard.ScoreLabel);
@@ -224,9 +236,6 @@ module scenes {
    
       this.addChild(this._sushi);
 
-       //Add child for cyborgbullet
-       this._cyborgbullet.forEach(_cyborgbullet => {
-        this.addChild(_cyborgbullet)});
       
     }
   }
