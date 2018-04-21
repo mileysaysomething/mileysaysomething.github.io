@@ -36,9 +36,9 @@ var scenes;
             console.log(scenes.PlayScene.soundOn);
             // instantiate the cyborg array
             this._cyborg = new Array();
-            this._cyborgNum = 15;
+            this._cyborgNum = 12;
             // loop and add each cyborg to the array
-            for (var count = 0; count < this._cyborgNum + 5; count++) {
+            for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
             for (var count = 0; count < this._cyborgNum; count++) {
@@ -84,7 +84,7 @@ var scenes;
             else if (objects.Game.keyboardManager.shift) {
                 this._unmuteBtnClick();
             }
-            if (this._bullet.x > 1500) {
+            if (this._bullet.x > 1200) {
                 this._bullet.x = this._ninja.x;
                 this._bullet.y = this._ninja.y;
             }
@@ -105,6 +105,7 @@ var scenes;
                 }
                 //Manages Collisions for the cyborgbullets
                 _this._cyborgbullet.forEach(function (_cyborgbullet) {
+                    _this.removeChild();
                     _cyborgbullet.Update();
                     managers.Collision.Check(_this._ninja, _cyborgbullet);
                     if (_cyborgbullet.x < 0) {
@@ -138,6 +139,7 @@ var scenes;
                 _this.addChild(cyborg);
             });
             this._cyborgbullet.forEach(function (_cyborgbullet) {
+                _this.removeChild();
                 _this.addChild(_cyborgbullet);
             });
             // add scoreboard labels to the scene

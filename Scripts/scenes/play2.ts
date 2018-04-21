@@ -59,9 +59,9 @@ module scenes {
 
       // instantiate the cyborg array
       this._cyborg = new Array<objects.Cyborg>();
-      this._cyborgNum = 15;
+      this._cyborgNum = 12;
       // loop and add each cyborg to the array
-      for (let count = 0; count < this._cyborgNum+5; count++) {
+      for (let count = 0; count < this._cyborgNum; count++) {
         this._cyborg[count] = new objects.Cyborg(this.assetManager);
       }
 
@@ -126,7 +126,7 @@ module scenes {
          this._unmuteBtnClick();
        }
 
-      if (this._bullet.x > 1500 ){
+      if (this._bullet.x > 1200 ){
         
         this._bullet.x = this._ninja.x;
         this._bullet.y = this._ninja.y;
@@ -158,6 +158,8 @@ module scenes {
              //Manages Collisions for the cyborgbullets
 
     this._cyborgbullet.forEach(_cyborgbullet => {
+      this.removeChild();
+
       _cyborgbullet.Update();
       managers.Collision.Check(this._ninja, _cyborgbullet);
   
@@ -215,6 +217,8 @@ module scenes {
       });
 
       this._cyborgbullet.forEach(_cyborgbullet => {
+        this.removeChild()
+
         this.addChild(_cyborgbullet);
 
       });

@@ -231,6 +231,8 @@ module scenes {
 
       this._cyborgbullet.forEach(_cyborgbullet => {
         this.addChild(_cyborgbullet);
+        this.removeChild();
+
 
       });
 

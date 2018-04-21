@@ -163,6 +163,10 @@ module scenes {
         this._muteBtnClick(); 
         objects.Game.currentScene = config.Scene.OVER;
       }
+      if(this._scoreBoard.Lives >= 5000) {
+        this._muteBtnClick(); 
+        objects.Game.currentScene = config.Scene.WIN;
+      }
 
     }
 

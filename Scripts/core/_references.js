@@ -16,6 +16,7 @@
 /// <reference path="../../Scripts/scenes/play2.ts"/>
 /// <reference path="../../Scripts/scenes/play.ts"/>
 /// <reference path="../../Scripts/scenes/start.ts"/>
+/// <reference path="../../Scripts/scenes/win.ts"/>
 /// <reference path="../../Scripts/math/vec2.ts"/>
 /// <reference path="../../Scripts/managers/keyboard.ts"/>
 /// <reference path="../../Scripts/managers/scoreboard.ts"/>

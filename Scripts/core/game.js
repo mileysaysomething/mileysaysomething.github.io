@@ -104,6 +104,9 @@
             case config.Scene.OVER:
                 currentScene = new scenes.OverScene(assetManager);
                 break;
+            case config.Scene.WIN:
+                currentScene = new scenes.WinScene(assetManager);
+                break;
         }
         currentState = objects.Game.currentScene;
         stage.addChild(currentScene);

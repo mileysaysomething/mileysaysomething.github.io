@@ -5,6 +5,7 @@ module config {
     PLAY2 = 2,
     PLAY3 = 3,
 
-    OVER = 4
+    OVER = 4,
+    WIN = 5
   }
 }
