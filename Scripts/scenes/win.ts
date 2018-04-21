@@ -4,7 +4,10 @@ module scenes {
       private _overLabel: objects.Label;
       private _backButton: objects.Button;
       private _scoreBoard: managers.ScoreBoard;
+
+      
       // Public Properties
+     // public _smileImg;
   
       // Constructor
       constructor(assetManager: createjs.LoadQueue) {
@@ -24,6 +27,7 @@ module scenes {
       // Initialize Game Variables and objects
       public Start(): void {
         this._overLabel = new objects.Label("Yay! U survived!", "40px", "Pressstart2p", "#ffffff", 675, 240, true);
+       // this._smileImg = new createjs.Bitmap("./Assets/images/smile.png",,y:);
         this._backButton = new objects.Button(this.assetManager, "backButton", 675, 340);
     
         // create the scoreboard UI for the Scene
@@ -44,7 +48,8 @@ module scenes {
   
         // add the backButton to the scene
         this.addChild(this._backButton);
-  
+
+       // this.addChild(this._smileImg);
         // add scoreboard labels to the scene
         this.addChild(this._scoreBoard.ScoreLabel);
         // event listeners

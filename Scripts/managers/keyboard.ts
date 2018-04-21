@@ -43,7 +43,7 @@ module managers {
           this.moveRight = true;
         break;
 
-        case config.Keys.SPACE:
+        case config.Keys.I:
           this.jump = true;
         break;
 
@@ -80,7 +80,7 @@ module managers {
           this.moveRight = false;
         break;
 
-        case config.Keys.SPACE:
+        case config.Keys.I:
           this.jump = false;
         break;
 

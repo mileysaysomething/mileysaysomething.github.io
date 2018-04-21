@@ -14,7 +14,8 @@ var config;
         Keys.S = 83;
         Keys.D = 68;
         // space bar
-        Keys.SPACE = 32;
+        // public static SPACE: number = 32;
+        Keys.I = 73;
         //escape
         Keys.ESCAPE = 27;
         // shift

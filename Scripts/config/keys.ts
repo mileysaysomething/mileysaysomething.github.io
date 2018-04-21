@@ -13,7 +13,8 @@ module config {
     public static D: number = 68;
 
     // space bar
-    public static SPACE: number = 32;
+     // public static SPACE: number = 32;
+     public static I: number = 73;
   
     //escape
     public static ESCAPE: number = 27;

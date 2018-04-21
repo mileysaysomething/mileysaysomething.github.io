@@ -53,7 +53,8 @@
         { id: "ghost", src: "./Assets/images/ghost.png" },
         { id: "sushi", src: "./Assets/images/sushi.png" },
         { id: "cyborgbullet", src: "./Assets/images/cyborgbullet.png" },
-        { id: "powerUp", src: "./Assets/audio/sushi.wav" }
+        { id: "powerUp", src: "./Assets/audio/sushi.wav" },
+        { id: "smileImg", src: "./Assets/images/smile.png" },
     ];
     // preloads assets
     function Init() {

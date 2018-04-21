@@ -13,6 +13,7 @@ var scenes;
     var WinScene = /** @class */ (function (_super) {
         __extends(WinScene, _super);
         // Public Properties
+        // public _smileImg;
         // Constructor
         function WinScene(assetManager) {
             var _this = _super.call(this, assetManager) || this;
@@ -27,6 +28,7 @@ var scenes;
         // Initialize Game Variables and objects
         WinScene.prototype.Start = function () {
             this._overLabel = new objects.Label("Yay! U survived!", "40px", "Pressstart2p", "#ffffff", 675, 240, true);
+            // this._smileImg = new createjs.Bitmap("./Assets/images/smile.png",,y:);
             this._backButton = new objects.Button(this.assetManager, "backButton", 675, 340);
             // create the scoreboard UI for the Scene
             this._scoreBoard = new managers.ScoreBoard();
@@ -41,6 +43,7 @@ var scenes;
             this.addChild(this._overLabel);
             // add the backButton to the scene
             this.addChild(this._backButton);
+            // this.addChild(this._smileImg);
             // add scoreboard labels to the scene
             this.addChild(this._scoreBoard.ScoreLabel);
             // event listeners

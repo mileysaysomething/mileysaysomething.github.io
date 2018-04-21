@@ -27,7 +27,7 @@ var managers;
                 case config.Keys.RIGHT_ARROW:
                     this.moveRight = true;
                     break;
-                case config.Keys.SPACE:
+                case config.Keys.I:
                     this.jump = true;
                     break;
                 case config.Keys.ESCAPE:
@@ -56,7 +56,7 @@ var managers;
                 case config.Keys.RIGHT_ARROW:
                     this.moveRight = false;
                     break;
-                case config.Keys.SPACE:
+                case config.Keys.I:
                     this.jump = false;
                     break;
                 case config.Keys.ESCAPE:
