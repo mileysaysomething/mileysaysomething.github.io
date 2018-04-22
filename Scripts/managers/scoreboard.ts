@@ -5,14 +5,14 @@ module managers {
     private _lives:number;
     private _score:number;
     private _time:number;
-
+    private _level:number;
     private _highScore:number;
 
     // public Instance variables
     public LivesLabel: objects.Label;
     public ScoreLabel: objects.Label;
     public TimeLabel: objects.Label;
-
+    public LevelLabel: objects.Label;
     public HighScoreLabel: objects.Label;
 
     // public properties
@@ -20,10 +20,13 @@ module managers {
       return this._lives;
     }
 
+
     set Lives(newLives:number) {
       this._lives = newLives;
       this.LivesLabel.text = "Lives: " + this._lives;
     }
+
+   
 
     get Time():number {
       return this._time;

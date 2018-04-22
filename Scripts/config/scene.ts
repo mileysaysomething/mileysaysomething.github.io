@@ -6,6 +6,8 @@ module config {
     PLAY3 = 3,
 
     OVER = 4,
-    WIN = 5
+    
+    WIN = 5,
+    TUTORIALS = 6
   }
 }

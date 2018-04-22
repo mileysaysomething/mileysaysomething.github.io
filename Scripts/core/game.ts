@@ -39,8 +39,10 @@
     {id: "clickMeButton", src:"./Assets/images/clickMeButton.png"},
     {id: "startButton", src:"./Assets/images/startBtn.png"},
     {id: "nextButton", src:"./Assets/images/nextButton.png"},
+    {id: "homeButton", src:"./Assets/images/homeBtn.png"},
     {id: "backButton", src:"./Assets/images/backBtn.png"},
     {id: "instructionBtn", src:"./Assets/images/InstructionBtn.png"},
+    {id: "tutorials", src:"./Assets/images/ins.png"},
     {id: "level1", src:"./Assets/images/fujiNew.png"},
     {id: "level2", src:"./Assets/images/BambooNew.png"},
     {id: "level3", src:"./Assets/images/lvl3BG.png"},
@@ -123,6 +125,9 @@
       case config.Scene.WIN:
         currentScene = new scenes.WinScene(assetManager);
       break;
+      case config.Scene.TUTORIALS:
+      currentScene = new scenes.TutorialsScene(assetManager);
+    break;
     }
 
     currentState = objects.Game.currentScene;
