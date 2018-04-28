@@ -15,7 +15,8 @@ module managers {
       // create two vec2 objects
       let P1: math.Vec2 = new math.Vec2(object1.x, object1.y);
       let P2: math.Vec2 = new math.Vec2(object2.x, object2.y);
-      frameCount++;
+      
+     frameCount++;
 
       if (frameCount % 1000 == 0) {
         objects.Game.scoreBoard.Time += 1;
@@ -71,8 +72,7 @@ module managers {
             case "bullet":
               object1.visible = false;
               object1.x = 1400;
-              count++;
-              objects.Game.scoreBoard.Score += count;
+              objects.Game.scoreBoard.Score += 1;
               break;
           }
 
@@ -98,7 +98,6 @@ module managers {
 
 
       // The objects are t look into https://gamedev.stackexchange.com/questions/128675/how-to-detect-collisions-of-objects-in-two-different-arrayshtml-canvas
-
 
     }
 

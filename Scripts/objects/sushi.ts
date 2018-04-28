@@ -1,52 +1,52 @@
 module objects {
-    export class Sushi extends objects.GameObject {
-      // private instance variables
-  
-      // public properties
-  
-      // Constructor
-      constructor(assetManager: createjs.LoadQueue) {
-        super(assetManager, "sushi");
-        this.Start();
-      }
-  
-      // private methods
-  
-      // public methods
+  export class Sushi extends objects.GameObject {
+    // private instance variables
+
+    // public properties
+
+    // Constructor
+    constructor(assetManager: createjs.LoadQueue) {
+      super(assetManager, "sushi");
+      this.Start();
+    }
+
+    // private methods
+
+    // public methods
+    
+    // Initializes variables and creates new objects
+    public Start():void {
+      this._dy = 5;
+      this.Reset();
+    }
+
+    // updates the game object every frame
+    public Update():void {
+      this.Move();
+      this.CheckBounds();
+
       
-      // Initializes variables and creates new objects
-      public Start():void {
-        this._dy = 5;
-        this.Reset();
-      }
-  
-      // updates the game object every frame
-      public Update():void {
-        this.Move();
-        this.CheckBounds();
+    }
 
-        
-      }
-  
-      // reset the objects location to some value
-      public Reset():void {
-        this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);
-        this.y = -this.height;
-      }
-  
-      // move the object to some new location
-      public Move():void {
-        this.y += this._dy;
-      }
-  
-      // check to see if some boundary has been passed
-     
+    // reset the objects location to some value
+    public Reset():void {
+      this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth + 200);
+      this.y = -this.height;
+    }
 
-        public CheckBounds():void {
-          if(this.y > 600) {
-            this.Reset();
-          }
-      }
+    // move the object to some new location
+    public Move():void {
+      this.y += this._dy;
+    }
+
+    // check to see if some boundary has been passed
+   
+
+      public CheckBounds():void {
+        if(this.y > 600) {
+          this.Reset();
+        }
     }
   }
-  
+}
+

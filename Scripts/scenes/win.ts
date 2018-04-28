@@ -19,6 +19,7 @@ module scenes {
       // Private Mathods
       private _backButtonClick():void {
         objects.Game.currentScene = config.Scene.PLAY;
+        location.reload(true);
       }
   
   

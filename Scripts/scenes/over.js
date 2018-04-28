@@ -22,6 +22,7 @@ var scenes;
         // Private Mathods
         OverScene.prototype._backButtonClick = function () {
             objects.Game.currentScene = config.Scene.PLAY;
+            location.reload(true);
         };
         // Public Methods
         // Initialize Game Variables and objects

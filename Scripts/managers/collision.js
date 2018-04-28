@@ -48,8 +48,7 @@ var managers;
                         case "bullet":
                             object1.visible = false;
                             object1.x = 1400;
-                            count++;
-                            objects.Game.scoreBoard.Score += count;
+                            objects.Game.scoreBoard.Score += 1;
                             break;
                     }
                 }

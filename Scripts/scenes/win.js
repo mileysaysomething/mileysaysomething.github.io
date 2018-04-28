@@ -23,6 +23,7 @@ var scenes;
         // Private Mathods
         WinScene.prototype._backButtonClick = function () {
             objects.Game.currentScene = config.Scene.PLAY;
+            location.reload(true);
         };
         // Public Methods
         // Initialize Game Variables and objects

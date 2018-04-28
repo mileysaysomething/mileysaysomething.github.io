@@ -34,7 +34,7 @@ var objects;
         };
         // reset the objects location to some value
         Sushi.prototype.Reset = function () {
-            this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);
+            this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth + 200);
             this.y = -this.height;
         };
         // move the object to some new location

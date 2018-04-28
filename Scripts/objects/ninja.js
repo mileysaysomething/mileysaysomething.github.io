@@ -52,7 +52,6 @@ var objects;
             if (objects.Game.keyboardManager.jump && this._activeSpecial == true) {
                 createjs.Tween.get(this).to({ alpha: 0.2 }).wait(9000).to({ alpha: 1 });
                 //this.onsubmit(objects.Game.keyboardManager.jump);
-                console.log("first press");
             }
             else {
                 this._activeSpecial = false;
@@ -60,17 +59,11 @@ var objects;
             }
         };
         Ninja.prototype._resetSpecial = function () {
-            console.log(this._specialTimer);
             if (this._specialTimer % 500 === 0) {
                 this._activeSpecial = true;
             }
         };
         Ninja.prototype.Move = function () {
-            // mouse controls
-            //  this.x = objects.Game.stage.mouseX;      
-            // this.y = objects.Game.stage.mouseY;
-            // level 2 - 3 this.setTransform(this.x,this.y,this.scaleX,this.scaleY, 180,0,0)
-            // keyboard controls
             if (objects.Game.keyboardManager.moveLeft) {
                 this.x -= 3;
             }
@@ -90,13 +83,13 @@ var objects;
                 this.x = 1350 - this.halfWidth;
             }
             // left boundary
-            if (this.x <= 150 - this.halfWidth) {
-                this.x = 150 - this.halfWidth;
+            if (this.x <= 300 - this.halfWidth) {
+                this.x = 300 - this.halfWidth;
             }
             //down boundary
-            if (this.y >= 510 - this.halfWidth) {
+            if (this.y >= 450 - this.halfWidth) {
                 // console.log(this.y);
-                this.y = 510 - this.halfWidth;
+                this.y = 450 - this.halfWidth;
             }
             if (this.y <= 105 - this.halfWidth) {
                 // console.log(this.y);

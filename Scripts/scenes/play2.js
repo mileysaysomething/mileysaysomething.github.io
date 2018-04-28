@@ -12,17 +12,12 @@ var scenes;
 (function (scenes) {
     var PlayScene2 = /** @class */ (function (_super) {
         __extends(PlayScene2, _super);
-        // Public Properties
-        // Constructor
         function PlayScene2(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this._specialTimer = 0;
             _this.Start();
             return _this;
         }
-        // Private Mathods
-        // Public Methods
-        // Initialize Game Variables and objects
         PlayScene2.prototype.Start = function () {
             this._level2 = new objects.Level2(this.assetManager);
             this._level3 = new objects.Level3(this.assetManager);
@@ -34,10 +29,8 @@ var scenes;
             this._muteBtn = new objects.Button(this.assetManager, "muteBtn", 1300, 80);
             this._unmuteBtn = new objects.Button(this.assetManager, "unmuteBtn", 1300, 30);
             console.log(scenes.PlayScene.soundOn);
-            // instantiate the cyborg array
             this._cyborg = new Array();
             this._cyborgNum = 10;
-            // loop and add each cyborg to the array
             for (var count = 0; count < this._cyborgNum; count++) {
                 this._cyborg[count] = new objects.Cyborg(this.assetManager);
             }
@@ -45,9 +38,8 @@ var scenes;
                 this._cyborgbullet[count] = new objects.cyborgbullet(this.assetManager);
             }
             this._ninjaBGMSound = createjs.Sound.play("engine");
-            this._ninjaBGMSound.loop = -1; // play forever
+            this._ninjaBGMSound.loop = -1;
             this._ninjaBGMSound.volume = 0.3;
-            // create the scoreboard UI for the Scene
             this._scoreBoard = new managers.ScoreBoard();
             objects.Game.scoreBoard = this._scoreBoard;
             this.Main();
@@ -57,15 +49,9 @@ var scenes;
         };
         PlayScene2.prototype._unmuteBtnClick = function () {
             this._ninjaBGMSound = createjs.Sound.play("ninjaBGM");
-            this._ninjaBGMSound.loop = -1; // play forever
+            this._ninjaBGMSound.loop = -1;
             this._ninjaBGMSound.volume = 0.1;
         };
-        PlayScene2.prototype.changescene = function () {
-            if (this._scoreBoard.Score > 4000) {
-                objects.Game.currentScene = config.Scene.START;
-            }
-        };
-        // triggered every frame
         PlayScene2.prototype.Update = function () {
             var _this = this;
             this._level2.Update();
@@ -76,6 +62,7 @@ var scenes;
             this._sushi.Update();
             this._specialTimer++;
             managers.Collision.Check(this._ninja, this._sushi);
+            managers.Collision.CurrentScore -= 1;
             if (objects.Game.keyboardManager.escape) {
                 console.log("clicked");
                 scenes.PlayScene.count += 1;
@@ -84,70 +71,61 @@ var scenes;
             else if (objects.Game.keyboardManager.shift) {
                 this._unmuteBtnClick();
             }
+            else if (objects.Game.keyboardManager.jump) {
+                createjs.Tween.get(this._special).to({ alpha: 0.1 }, 9000).to({ alpha: 1 });
+            }
             if (this._bullet.x > 1200) {
                 this._bullet.x = this._ninja.x;
                 this._bullet.y = this._ninja.y;
             }
-            // check collision between plane and island
-            //  managers.Collision.Check(this.plane, this.island);
             this._cyborg.forEach(function (cyborg) {
                 cyborg.Update();
-                // check collision between plane and current cyborg
                 if (_this._ninja.alpha != 0.2) {
                     managers.Collision.Check(_this._ninja, cyborg);
-                }
-                else if (objects.Game.keyboardManager.jump) {
-                    createjs.Tween.get(_this._special).to({ alpha: 0.1 }, 9000).to({ alpha: 1 });
                 }
                 managers.Collision.Check(cyborg, _this._bullet);
                 if (cyborg.x < 0) {
                     cyborg.x = 1300;
                 }
             });
-            //Manages Collisions for the cyborgbullets
             this._cyborgbullet.forEach(function (_cyborgbullet) {
-                _cyborgbullet.Update();
-                managers.Collision.Check(_this._ninja, _cyborgbullet);
-                if (_cyborgbullet.x < 0) {
-                    _cyborgbullet.Reset();
+                if (_this._scoreBoard.Time > 70 && _this._scoreBoard.Time < 110) {
+                    _cyborgbullet.alpha = 1;
+                    _cyborgbullet.Update();
+                    if (_this._ninja.alpha != 0.2) {
+                        managers.Collision.Check(_this._ninja, _cyborgbullet);
+                    }
+                }
+                else {
+                    _cyborgbullet.alpha = 0;
                 }
             });
-            // if lives fall below zero switch scenes to the game over scene
             if (this._scoreBoard.Lives <= 0) {
                 this._muteBtnClick();
                 objects.Game.currentScene = config.Scene.OVER;
             }
-            if (this._scoreBoard.Score >= 1000) {
+            if (this._scoreBoard.Score >= 250) {
                 this._ninjaBGMSound.stop();
                 this.removeChild();
                 objects.Game.currentScene = config.Scene.PLAY3;
-                objects.Game.store = this._scoreBoard.Score;
             }
         };
-        // This is where the fun happens
         PlayScene2.prototype.Main = function () {
             var _this = this;
-            // add the ocean to the scene
             this.addChild(this._level2);
-            // add the bullet to the scene
             this.addChild(this._bullet);
-            // add the ninja to the scene
             this.addChild(this._ninja);
-            // add cyborg to the scene
             this._cyborg.forEach(function (cyborg) {
                 _this.addChild(cyborg);
             });
             this._cyborgbullet.forEach(function (_cyborgbullet) {
                 _this.addChild(_cyborgbullet);
             });
-            // add scoreboard labels to the scene
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
             this.addChild(this._scoreBoard.TimeLabel);
-            // add the muteBtn to the scene
             this.addChild(this._muteBtn);
             this._unmuteBtn.on("click", this._unmuteBtnClick);
-            // add the unmuteBtn to the scene
             this.addChild(this._unmuteBtn);
             this._muteBtn.on("click", this._muteBtnClick);
             this.addChild(this._special);

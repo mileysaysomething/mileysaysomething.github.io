@@ -53,7 +53,6 @@ module objects {
 
         createjs.Tween.get(this).to({alpha:0.2}).wait(9000).to({alpha:1});
         //this.onsubmit(objects.Game.keyboardManager.jump);
-        console.log("first press");
       } 
       else{
         this._activeSpecial = false;
@@ -65,24 +64,14 @@ module objects {
 
     private _resetSpecial()
     {   
-      console.log (this._specialTimer);
 
       if(this._specialTimer % 500  === 0
       ){ this._activeSpecial = true; 
       }  
-      
-
 }
-  
 
-    public Move(): void {
-
-      // mouse controls
-      //  this.x = objects.Game.stage.mouseX;      
-      // this.y = objects.Game.stage.mouseY;
-            // level 2 - 3 this.setTransform(this.x,this.y,this.scaleX,this.scaleY, 180,0,0)
-       
-      // keyboard controls
+    public Move(): void 
+    {
       if (objects.Game.keyboardManager.moveLeft) {
 
         this.x -= 3;
@@ -115,14 +104,14 @@ module objects {
       }
 
       // left boundary
-      if (this.x <= 150 - this.halfWidth) {
-        this.x = 150 - this.halfWidth;
+      if (this.x <= 300 - this.halfWidth) {
+        this.x = 300 - this.halfWidth;
 
       }
       //down boundary
-      if (this.y >= 510 - this.halfWidth) {
+      if (this.y >= 450 - this.halfWidth) {
         // console.log(this.y);
-        this.y = 510 - this.halfWidth;
+        this.y = 450 - this.halfWidth;
 
       }
 
